@@ -922,6 +922,12 @@ footer .bottom-footer .payment-img {
   }
 }
 
+@media (max-width: 670px) {
+  header .bottom-header .category-nav {
+    display: none;
+  }
+}
+
 @media (max-width: 500px) {
   header .top-header .search-box {
     width: 100%;
@@ -932,9 +938,7 @@ footer .bottom-footer .payment-img {
   header .top-header .search-box input {
     width: calc(100% - 140px);
   }
-  header .bottom-header .category-nav {
-    display: none;
-  }
+
   header .bottom-header .nav-links {
     width: 100%;
     left: -100%;
