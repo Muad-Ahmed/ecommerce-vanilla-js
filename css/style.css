@@ -950,6 +950,9 @@ footer .bottom-footer .payment-img {
     width: 100%;
     right: -100%;
   }
+  .cart .bottom-cart .button-cart {
+    justify-content: space-between;
+  }
   .banners-4 .container .box {
     width: 100%;
   }
