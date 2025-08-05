@@ -635,7 +635,7 @@ footer .bottom-footer p {
   color: var(--white-color);
 }
 footer .bottom-footer .payment-img {
-  width: 350px;
+  width: 330px;
 }
 
 /* End Footer */
@@ -920,6 +920,9 @@ footer .bottom-footer .payment-img {
     gap: 8px;
     padding-top: 7px;
   }
+  footer .bottom-footer .payment-img {
+    width: 300px;
+  }
 }
 
 @media (max-width: 670px) {
@@ -970,6 +973,9 @@ footer .bottom-footer .payment-img {
   }
   footer .container .big-row {
     width: 100%;
+  }
+  footer .bottom-footer .payment-img {
+    width: 80%;
   }
 }
 
