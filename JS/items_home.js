@@ -1,4 +1,4 @@
-fetch("products.json")
+fetch("public/products.json")
   .then((response) => response.json())
   .then((data) => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];

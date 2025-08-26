@@ -15,7 +15,7 @@ function open_menu() {
   navLinks.classList.toggle("active");
 }
 
-fetch("products.json")
+fetch("public/products.json")
   .then((response) => response.json())
   .then((data) => {
     const addToCartButtons = document.querySelectorAll(".btn-add-cart");
@@ -108,19 +108,25 @@ function updateCart() {
 
   if (checkoutItems) {
     document.querySelector(".subtotal-checkout").innerHTML = `$ ${totalPrice}`;
-    document.querySelector(".total-checkout").innerHTML = `$ ${totalPrice + 20}`;
+    document.querySelector(".total-checkout").innerHTML = `$ ${
+      totalPrice + 20
+    }`;
   }
 
-  document.querySelectorAll(".increase-quantity").forEach((btn) =>
-    btn.addEventListener("click", (e) =>
-      increaseQuantity(e.target.getAttribute("data-index"))
-    )
-  );
-  document.querySelectorAll(".decrease-quantity").forEach((btn) =>
-    btn.addEventListener("click", (e) =>
-      decreaseQuantity(e.target.getAttribute("data-index"))
-    )
-  );
+  document
+    .querySelectorAll(".increase-quantity")
+    .forEach((btn) =>
+      btn.addEventListener("click", (e) =>
+        increaseQuantity(e.target.getAttribute("data-index"))
+      )
+    );
+  document
+    .querySelectorAll(".decrease-quantity")
+    .forEach((btn) =>
+      btn.addEventListener("click", (e) =>
+        decreaseQuantity(e.target.getAttribute("data-index"))
+      )
+    );
   document.querySelectorAll(".delete-item").forEach((btn) =>
     btn.addEventListener("click", (e) => {
       const idx = e.target.closest("button").getAttribute("data-index");
