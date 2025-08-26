@@ -546,6 +546,7 @@ header .bottom-header .nav-links li.active a {
 .banners .banners-boxes {
   display: flex;
   justify-content: space-between;
+  gap: 5px;
 }
 .banners .banners-boxes .box {
   width: 49%;
@@ -1200,10 +1201,10 @@ footer .bottom-footer .payment-img {
 @media (max-width: 480px) {
   .checkout .ordersummary .item-cart img {
     width: 60px;
-}
-.checkout .ordersummary .item-cart h4 {
+  }
+  .checkout .ordersummary .item-cart h4 {
     max-width: 180px;
-}
+  }
 }
 
 /* // Checkout Page // */
