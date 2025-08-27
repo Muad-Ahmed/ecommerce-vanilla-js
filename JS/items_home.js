@@ -77,7 +77,8 @@ fetch("public/products.json")
         : "";
 
       let html = `
-          <div class="swiper-slide product">
+         <a href="productDetails.html?id=${product.id}">
+          <div class="swiper-slide product" id="product-card">
             ${percentDiscDiv}
             <div class="img-product">
               <a href="#"><img src="${product.img}" alt=""></a>
@@ -96,14 +97,15 @@ fetch("public/products.json")
             </div>
             <div class="icons">
               <span class="btn-add-cart ${isInCart ? "active" : ""}" data-id="${
-        product.id
-      }">
+               product.id
+              }">
                 <i class="fa-solid fa-cart-shopping"></i>
                 ${isInCart ? "Item in cart" : "add to cart"}
               </span>
               <span class="icon-product"><i class="fa-regular fa-heart"></i></span>
             </div>
           </div>
+         </a>
         `;
 
       swipers[key].innerHTML += html;
