@@ -81,7 +81,9 @@ fetch("public/products.json")
           <div class="swiper-slide product" id="product-card">
             ${percentDiscDiv}
             <div class="img-product">
-              <a href="#"><img src="${product.img}" alt=""></a>
+              <a href="productDetails.html?id=${product.id}"><img src="${
+        product.img
+      }" alt=""></a>
             </div>
             <div class="stars">
               <i class="fa-solid fa-star"></i>
@@ -90,15 +92,17 @@ fetch("public/products.json")
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
             </div>
-            <p class="name-product"><a href="#">${product.name}</a></p>
+            <p class="name-product"><a href="productDetails.html?id=${
+              product.id
+            }">${product.name}</a></p>
             <div class="price">
               <p><span>$${product.price}</span></p>
               ${oldPriceParagraph}
             </div>
             <div class="icons">
               <span class="btn-add-cart ${isInCart ? "active" : ""}" data-id="${
-               product.id
-              }">
+        product.id
+      }">
                 <i class="fa-solid fa-cart-shopping"></i>
                 ${isInCart ? "Item in cart" : "add to cart"}
               </span>

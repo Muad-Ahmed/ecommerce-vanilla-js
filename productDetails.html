@@ -11,8 +11,275 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- ############################ -->
-     <!-- JS related file -->
+    <!-- Cart -->
+    <div class="cart">
+      <div class="top-cart">
+        <h3>Cart Items : <span class="count-item-cart">0</span></h3>
+        <span onclick="open_close_cart()" class="close-cart"
+          ><i class="fa-regular fa-circle-xmark"></i
+        ></span>
+      </div>
+
+      <div class="items-in-cart" id="cart-items"></div>
+
+      <div class="bottom-cart">
+        <div class="total">
+          <p>subtotal</p>
+          <p class="price-cart-total">$0</p>
+        </div>
+
+        <div class="button-cart">
+          <a href="checkout.html" class="btn-cart btn">Checkout</a>
+          <span onclick="open_close_cart()" class="btn-cart btn trans-bg">
+            Shop More</span
+          >
+        </div>
+      </div>
+    </div>
+    <!-- End Cart -->
+
+    <!-- Header -->
+    <header>
+      <div class="top-header">
+        <div class="container">
+          <a href="#" class="logo"><img src="img/logo.png" alt="" /></a>
+
+          <form action="" class="search-box">
+            <div class="select-box">
+              <select id="category" name="category">
+                <option value="All categories">All categories</option>
+                <option value="Electronics & Digita">
+                  Electronics & Digita
+                </option>
+                <option value="Phones & Tablet">Phones & Tablet</option>
+                <option value="Fashion & Clothing">Fashion & Clothing</option>
+                <option value="Telivsion & Monitor">Telivsion & Monitor</option>
+                <option value="Jewelry & Watches">Jewelry & Watches</option>
+                <option value="Washing Machine">Washing Machine</option>
+                <option value="Toys & Hobbies">Toys & Hobbies</option>
+              </select>
+            </div>
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="search for Products"
+            />
+            <button type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+
+          <div class="header-icons">
+            <div class="icon">
+              <a href="#">
+                <i class="fa-regular fa-heart"></i>
+                <span class="count count-favourite">0</span>
+              </a>
+            </div>
+            <div onclick="open_close_cart()" class="icon">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="count count-item-header">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-header">
+        <div class="container">
+          <nav class="nav">
+            <span onclick="open_menu()" class="open-menu"
+              ><i class="fa-solid fa-bars"></i
+            ></span>
+
+            <div class="category-nav">
+              <div onclick="Open_Categ_list()" class="category-btn">
+                <i class="fa-solid fa-bars"></i>
+                <p>Browse Category</p>
+                <i class="fa-solid fa-angle-down"></i>
+              </div>
+
+              <div class="category-nav-list">
+                <a href="#">Top 10 Offers</a>
+                <a href="#">Electronics & Digital</a>
+                <a href="#">Phones & Tablet</a>
+                <a href="#">Fashion & Clothing</a>
+                <a href="#">Television & Monitor</a>
+                <a href="#">Jewelry & Watches</a>
+                <a href="#">Toys & Hobbies</a>
+              </div>
+            </div>
+
+            <ul class="nav-links">
+              <span onclick="open_menu()" class="close-menu"
+                ><i class="fa-regular fa-circle-xmark"></i
+              ></span>
+
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Accessories </a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+
+          <div class="login-signup btns">
+            <a href="#" class="btn"
+              >Login <i class="fa-solid fa-right-to-bracket"></i
+            ></a>
+
+            <a href="#" class="btn"
+              >Sign Up <i class="fa-solid fa-user-plus"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
+    <!-- ############################################################################################ -->
+    <!-- Page Content -->
+    <div class="details">
+      <div class="container">
+        <div class="image-div">
+          <img src="img/product/22.png" alt="img" id="img" />
+        </div>
+        <div class="info">
+          <!-- product name -->
+          <h1 id="product-name"></h1>
+          <!-- product rating -->
+          <div class="stars" id="product-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <!-- price -->
+          <p id="price">$15</p>
+          <!-- availability -->
+          <h5>Availability : <span> In Stock</span></h5>
+
+          <!-- brand -->
+          <h5>Brand : <span id="brand"></span></h5>
+
+          <!-- description -->
+          <p class="desc">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
+            neque magnam nemo alias accusamus quas ut incidunt animi eos
+            voluptate?
+          </p>
+          <!-- quantity -->
+          <span
+            >Hurry Up! Only <span id="quantity"></span> products left in
+            stock</span
+          >
+          <!-- icons -->
+          <div class="icons">
+            <span class="btn-add-cart" data-id="product.id">
+              <i class="fa-solid fa-cart-shopping"></i>
+              add to cart
+            </span>
+            <span class="icon-product"
+              ><i class="fa-regular fa-heart"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Page Content -->
+    <!-- ############################################################################################ -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="big-row">
+          <img class="logo-footer" src="img/white_logo.png" alt="" />
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
+            vero?
+          </p>
+
+          <div class="icons-footer">
+            <a href="#"><i class="fa-solid fa-phone"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="row">
+          <h4>Find It Fast</h4>
+
+          <div class="links">
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Laptops & Computers
+            </a>
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Smart Phones & Tablets</a
+            >
+            <a href="#"><i class="fa-solid fa-caret-right"></i> TV & Audio</a>
+            <a href="#"><i class="fa-solid fa-caret-right"></i> Appliances</a>
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Jewelry & Watches</a
+            >
+          </div>
+        </div>
+
+        <div class="row">
+          <h4>Quick Links</h4>
+
+          <div class="links">
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Your Account
+            </a>
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Returns & Exchanges</a
+            >
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Shipping & Delivery</a
+            >
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Estimated Delivery
+              Time</a
+            >
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Purchase History</a
+            >
+          </div>
+        </div>
+
+        <div class="row">
+          <h4>Our Services</h4>
+
+          <div class="links">
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Support Center</a
+            >
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Term & Conditions</a
+            >
+            <a href="#"
+              ><i class="fa-solid fa-caret-right"></i> Privacy Policy</a
+            >
+            <a href="#"><i class="fa-solid fa-caret-right"></i> Help</a>
+            <a href="#"><i class="fa-solid fa-caret-right"></i> FAQs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-footer">
+        <div class="container">
+          <p>&copy; <span>Reda Store.</span> All Rights Reserved.</p>
+
+          <div class="payment-img">
+            <img src="img/payment_method.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End Foote`r -->
+
+    <!-- JS related file -->
     <script src="JS/productDetails.js"></script>
+    <script src="JS/main.js"></script>
   </body>
 </html>

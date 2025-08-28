@@ -18,8 +18,9 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
-  font-family: "Nunito", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--color-heading);
+  word-spacing: -1px;
 }
 :root {
   --main-color: #ff8716;
@@ -510,7 +511,7 @@ header .bottom-header .nav-links li.active a {
 .product .icons .icon-product:hover i {
   color: var(--white-color);
 }
-.product .icons .btn-add-cart {
+.icons .btn-add-cart {
   background: var(--main-color);
   display: flex;
   align-items: center;
@@ -521,19 +522,19 @@ header .bottom-header .nav-links li.active a {
   transition: 0.3s;
   border: 1px solid var(--main-color);
 }
-.product .icons .btn-add-cart i {
+.icons .btn-add-cart i {
   color: var(--white-color);
   pointer-events: none;
 }
-.product .icons .btn-add-cart.active {
+.icons .btn-add-cart.active {
   color: var(--color-heading);
   background: transparent;
   pointer-events: none;
 }
-.product .icons .btn-add-cart.active i {
+.icons .btn-add-cart.active i {
   color: var(--main-color);
 }
-.product .icons .btn-add-cart:hover {
+.icons .btn-add-cart:hover {
   scale: 1.05;
   background: #f47600;
 }
@@ -771,6 +772,7 @@ footer .bottom-footer .payment-img {
 .cart .bottom-cart .button-cart .trans-bg {
   background: transparent;
   color: var(--color-heading);
+  padding: 10px 14px;
 }
 
 /* End Cart */
@@ -898,7 +900,7 @@ footer .bottom-footer .payment-img {
   .price .old-price {
     font-size: 12px;
   }
-  .product .icons .btn-add-cart {
+  .icons .btn-add-cart {
     font-size: 14px;
     padding: 3px 5px;
   }
@@ -972,10 +974,10 @@ footer .bottom-footer .payment-img {
   .banners .banners-boxs.banner-3-img .box {
     width: 100%;
   }
-  .product .icons .btn-add-cart {
+  .icons .btn-add-cart {
     font-size: 13px;
   }
-  .product .icons .btn-add-cart i {
+  .icons .btn-add-cart i {
     font-size: 14px;
   }
   footer .container .row {
@@ -1207,4 +1209,88 @@ footer .bottom-footer .payment-img {
   }
 }
 
-/* // Checkout Page // */
+/* ############### Start productDetails ################### */
+
+.details {
+  padding: 60px 0 80px;
+}
+.details .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-div {
+  width: 45%;
+  display: flex;
+  justify-content: flex-end;
+}
+.image-div img {
+  width: 100%;
+  margin-top: -25px;
+  max-width: 400px;
+  height: auto;
+}
+.info {
+  width: 53%;
+}
+.info #product-name {
+  color: var(--main-color);
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+.info #product-rating {
+  display: flex;
+  gap: 5px;
+  margin: 15px 0;
+}
+.info #product-rating i {
+  color: var(--main-color);
+  margin: 10px 0 10px;
+}
+.info #price {
+  font-size: 22px;
+  margin: 20px 0;
+}
+.info h5 {
+  font-weight: 500;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+.info #brand {
+}
+.info .desc {
+  line-height: 1.5;
+}
+.info .desc + span {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 20px 0;
+  display: block;
+}
+.info #quantity {
+}
+.info .icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.info .icons .icon-product {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.info .icons .icon-product:hover {
+  background: var(--main-color);
+}
+.info .icons .icon-product i {
+  font-size: 14px;
+}
+.info .icons .icon-product:hover i {
+  color: var(--white-color);
+}
