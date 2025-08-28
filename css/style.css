@@ -1256,8 +1256,6 @@ footer .bottom-footer .payment-img {
   margin-bottom: 20px;
   font-size: 16px;
 }
-.info #brand {
-}
 .info .desc {
   line-height: 1.5;
 }
@@ -1266,8 +1264,6 @@ footer .bottom-footer .payment-img {
   font-size: 20px;
   margin: 20px 0;
   display: block;
-}
-.info #quantity {
 }
 .info .icons {
   display: flex;

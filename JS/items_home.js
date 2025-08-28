@@ -27,10 +27,13 @@ fetch("public/products.json")
 
       if (product.old_price) {
         swipers["sale"].innerHTML += `
+        <a href="productDetails.html?id=${product.id}">
           <div class="swiper-slide product">
             <span class="sale-present">%${percentDisc}</span>
             <div class="img-product">
-              <a href="#"><img src="${product.img}" alt=""></a>
+               <a href="productDetails.html?id=${product.id}"><img src="${
+          product.img
+        }" alt=""></a>
             </div>
             <div class="stars">
               <i class="fa-solid fa-star"></i>
@@ -39,7 +42,9 @@ fetch("public/products.json")
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
             </div>
-            <p class="name-product"><a href="#">${product.name}</a></p>
+            <p class="name-product"> <a href="productDetails.html?id=${
+              product.id
+            }">${product.name}</a></p>
             <div class="price">
               <p><span>$${product.price}</span></p>
               <p class="old-price">$${product.old_price}</p>
@@ -54,6 +59,7 @@ fetch("public/products.json")
               <span class="icon-product"><i class="fa-regular fa-heart"></i></span>
             </div>
           </div>
+          </a>
         `;
       }
     });
