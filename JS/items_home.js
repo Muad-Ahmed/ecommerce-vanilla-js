@@ -2,6 +2,7 @@ fetch("public/products.json")
   .then((response) => response.json())
   .then((data) => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     const swipers = {
       sale: document.getElementById("swiper-items-sale"),
@@ -13,6 +14,7 @@ fetch("public/products.json")
     // Products with discount
     data.forEach((product) => {
       const isInCart = cart.some((item) => item.id === product.id);
+      const isInFavorites = favorites.some((item) => item.id === product.id);
       const oldPriceParagraph = product.old_price
         ? `<p class="old-price">$${product.old_price}</p>`
         : "";
@@ -55,7 +57,13 @@ fetch("public/products.json")
                 <i class="fa-solid fa-cart-shopping"></i>
                 ${isInCart ? "Item in cart" : "add to cart"}
               </span>
-              <span class="icon-product"><i class="fa-regular fa-heart"></i></span>
+              <span class="icon-product ${
+                isInFavorites ? "favorite" : ""
+              }" data-id="${product.id}">
+                <i class="${
+                  isInFavorites ? "fa-solid" : "fa-regular"
+                } fa-heart"></i>
+              </span>
             </div>
             <a href="productDetails.html?id=${
               product.id
@@ -71,6 +79,7 @@ fetch("public/products.json")
       else return;
 
       const isInCart = cart.some((item) => item.id === product.id);
+      const isInFavorites = favorites.some((item) => item.id === product.id);
       const oldPriceParagraph = product.old_price
         ? `<p class="old-price">$${product.old_price}</p>`
         : "";
@@ -112,7 +121,13 @@ fetch("public/products.json")
                  <i class="fa-solid fa-cart-shopping"></i>
                  ${isInCart ? "Item in cart" : "add to cart"}
                </span>
-               <span class="icon-product"><i class="fa-regular fa-heart"></i></span>
+               <span class="icon-product ${
+                 isInFavorites ? "favorite" : ""
+               }" data-id="${product.id}">
+                 <i class="${
+                   isInFavorites ? "fa-solid" : "fa-regular"
+                 } fa-heart"></i>
+               </span>
              </div>
              <a href="productDetails.html?id=${
                product.id
@@ -151,6 +166,29 @@ fetch("public/products.json")
       button.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
+
+        const productId = button.getAttribute("data-id");
+        const selectedProduct = data.find((p) => p.id == productId);
+
+        toggleFavorite(selectedProduct, button);
+
+        // Update all matching favorite buttons
+        const allMatchingButtons = document.querySelectorAll(
+          `.icon-product[data-id="${productId}"]`
+        );
+        allMatchingButtons.forEach((btn) => {
+          const isInFavorites = JSON.parse(
+            localStorage.getItem("favorites") || "[]"
+          ).some((item) => item.id == productId);
+
+          if (isInFavorites) {
+            btn.classList.add("favorite");
+            btn.innerHTML = `<i class="fa-solid fa-heart"></i>`;
+          } else {
+            btn.classList.remove("favorite");
+            btn.innerHTML = `<i class="fa-regular fa-heart"></i>`;
+          }
+        });
       });
     });
   });

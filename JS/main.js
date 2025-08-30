@@ -153,5 +153,47 @@ function updateButtonsState(productId) {
     });
 }
 
+// Update favorite count in header
+function updateFavoriteCount() {
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const favoriteCount = document.querySelector(".count-favourite");
+  if (favoriteCount) {
+    favoriteCount.textContent = favorites.length;
+  }
+}
+
+// Toggle favorite function (global)
+function toggleFavorite(product, button) {
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const existingIndex = favorites.findIndex((item) => item.id === product.id);
+
+  if (existingIndex > -1) {
+    // Remove from favorites
+    favorites.splice(existingIndex, 1);
+    if (button.classList.contains("favorite")) {
+      button.classList.remove("favorite");
+    }
+    if (button.querySelector("i")) {
+      button.querySelector("i").className = "fa-regular fa-heart";
+    }
+  } else {
+    // Add to favorites
+    favorites.push(product);
+    if (button.classList.contains("favorite")) {
+      button.classList.add("favorite");
+    }
+    if (button.querySelector("i")) {
+      button.querySelector("i").className = "fa-solid fa-heart";
+    }
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  updateFavoriteCount();
+}
+
 // Global function to be called from items_home.js
 window.addToCart = addToCart;
+window.toggleFavorite = toggleFavorite;
+
+// Initialize favorite count on page load
+updateFavoriteCount();

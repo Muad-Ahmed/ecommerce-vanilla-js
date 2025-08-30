@@ -512,6 +512,15 @@ header .bottom-header .nav-links li.active a {
 .product .icons .icon-product:hover i {
   color: var(--white-color);
 }
+
+.product .icons .icon-product.favorite {
+  background: #e51a1a;
+  border-color: #e51a1a;
+}
+
+.product .icons .icon-product.favorite i {
+  color: var(--white-color);
+}
 .icons .btn-add-cart {
   background: var(--main-color);
   display: flex;
@@ -1310,4 +1319,94 @@ footer .bottom-footer .payment-img {
 }
 .info .icons .icon-product:hover i {
   color: var(--white-color);
+}
+
+.info .icons .icon-product.favorite {
+  background: #e51a1a;
+  border-color: #e51a1a;
+}
+
+.info .icons .icon-product.favorite i {
+  color: var(--white-color);
+}
+
+/* Favorites Page */
+.favorites-page {
+  margin: 50px 0;
+}
+
+.favorites-page .page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.favorites-page .page-header h1 {
+  color: var(--main-color);
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.favorites-page .page-header h1 i {
+  margin-right: 10px;
+  color: #6d6d6d;
+}
+
+.favorites-page .page-header p {
+  color: var(--p-color);
+  font-size: 18px;
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.empty-favorites {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-favorites i {
+  font-size: 80px;
+  color: var(--p-color);
+  margin-bottom: 20px;
+}
+
+.empty-favorites h2 {
+  color: var(--color-heading);
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.empty-favorites p {
+  color: var(--p-color);
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.empty-favorites .btn {
+  background: var(--main-color);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.empty-favorites .btn:hover {
+  background: #e67600;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .favorites-page .page-header h1 {
+    font-size: 28px;
+  }
 }
