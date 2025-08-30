@@ -1,25 +1,25 @@
-const paths = [
-  "/products.json",
-  "public/products.json",
-  "./public/products.json",
-];
-
-function fetchAny(paths) {
-  return new Promise((resolve, reject) => {
-    (function tryNext(i) {
-      if (i >= paths.length)
-        return reject(new Error("products.json not found"));
-      fetch(paths[i])
-        .then((res) => {
-          if (!res.ok) return tryNext(i + 1);
-          return res.json().then(resolve);
-        })
-        .catch(() => tryNext(i + 1));
-    })(0);
-  });
+// Simplified fetch function
+async function loadProducts() {
+  try {
+    // Try the most common path first
+    const response = await fetch("public/products.json");
+    if (!response.ok) {
+      throw new Error("Failed to load products");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error loading products:", error);
+    return [];
+  }
 }
 
-fetchAny(paths).then((data) => {
+// Load products and render them
+loadProducts().then((data) => {
+  if (!data || data.length === 0) {
+    console.error("No products data available");
+    return;
+  }
+
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   const swipers = {
@@ -139,4 +139,31 @@ fetchAny(paths).then((data) => {
 
     swipers[key].innerHTML += html;
   });
+
+  // Add event listeners to cart buttons after rendering
+  setTimeout(() => {
+    const addToCartButtons = document.querySelectorAll(".btn-add-cart");
+    addToCartButtons.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const productId = button.getAttribute("data-id");
+        const selectedProduct = data.find((p) => p.id == productId);
+
+        if (selectedProduct) {
+          addToCart(selectedProduct);
+
+          // Update all buttons with same product ID
+          const allMatchingButtons = document.querySelectorAll(
+            `.btn-add-cart[data-id="${productId}"]`
+          );
+          allMatchingButtons.forEach((btn) => {
+            btn.classList.add("active");
+            btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in cart`;
+          });
+        }
+      });
+    });
+  }, 100);
 });

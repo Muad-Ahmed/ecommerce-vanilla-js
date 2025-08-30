@@ -7,39 +7,37 @@ const price = document.getElementById("price");
 const productBrand = document.getElementById("brand");
 const quantity = document.getElementById("quantity");
 
-const paths = [
-  "/products.json",
-  "public/products.json",
-  "./public/products.json",
-];
-
-function fetchAny(paths) {
-  return new Promise((resolve, reject) => {
-    (function tryNext(i) {
-      if (i >= paths.length)
-        return reject(new Error("products.json not found"));
-      fetch(paths[i])
-        .then((res) => {
-          if (!res.ok) return tryNext(i + 1);
-          return res.json().then(resolve);
-        })
-        .catch(() => tryNext(i + 1));
-    })(0);
-  });
+// Simplified fetch function
+async function loadProductDetails() {
+  try {
+    const response = await fetch("public/products.json");
+    if (!response.ok) {
+      throw new Error("Failed to load products");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error loading products:", error);
+    return [];
+  }
 }
 
-fetchAny(paths).then((data) => {
-    const selectedProduct = data.find(
-      (product) => product.id === Number(productId)
-    );
+loadProductDetails().then((data) => {
+  if (!data || data.length === 0) {
+    console.error("No products data available");
+    return;
+  }
 
-    if (selectedProduct) {
-      img.src = selectedProduct.img;
-      productName.textContent = selectedProduct.name;
-      price.textContent = `$${selectedProduct.price}`;
-      productBrand.textContent = selectedProduct.brand;
-      quantity.textContent = selectedProduct.quantity;
-    } else {
-      console.error("Product not Found");
-    }
-  });
+  const selectedProduct = data.find(
+    (product) => product.id === Number(productId)
+  );
+
+  if (selectedProduct) {
+    img.src = selectedProduct.img;
+    productName.textContent = selectedProduct.name;
+    price.textContent = `$${selectedProduct.price}`;
+    productBrand.textContent = selectedProduct.brand;
+    quantity.textContent = selectedProduct.quantity;
+  } else {
+    console.error("Product not Found");
+  }
+});

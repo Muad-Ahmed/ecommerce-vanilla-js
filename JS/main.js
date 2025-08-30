@@ -15,51 +15,40 @@ function open_menu() {
   navLinks.classList.toggle("active");
 }
 
-const paths = [
-  "/products.json",
-  "public/products.json",
-  "./public/products.json",
-];
-
-function fetchAny(paths) {
-  return new Promise((resolve, reject) => {
-    (function tryNext(i) {
-      if (i >= paths.length)
-        return reject(new Error("products.json not found"));
-      fetch(paths[i])
-        .then((res) => {
-          if (!res.ok) return tryNext(i + 1);
-          return res.json().then(resolve);
-        })
-        .catch(() => tryNext(i + 1));
-    })(0);
-  });
+// Simplified fetch function
+async function loadProducts() {
+  try {
+    const response = await fetch("public/products.json");
+    if (!response.ok) {
+      throw new Error("Failed to load products");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error loading products:", error);
+    return [];
+  }
 }
 
-fetchAny(paths).then((data) => {
-  const addToCartButtons = document.querySelectorAll(".btn-add-cart");
+// Global products data
+let productsData = [];
 
-  addToCartButtons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const productId = event.target.getAttribute("data-id");
-      const selectedProduct = data.find((p) => p.id == productId);
-
-      addToCart(selectedProduct);
-
-      const allMatchingButtons = document.querySelectorAll(
-        `.btn-add-cart[data-id="${productId}"]`
-      );
-      allMatchingButtons.forEach((btn) => {
-        btn.classList.add("active");
-        btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in cart`;
-      });
-    });
-  });
+// Load products data
+loadProducts().then((data) => {
+  productsData = data;
+  console.log("Products loaded successfully:", data.length);
 });
 
 function addToCart(product) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push({ ...product, quantity: 1 });
+
+  // Check if product already exists in cart
+  const existingItem = cart.find((item) => item.id === product.id);
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCart();
 }
@@ -127,11 +116,12 @@ function updateCart() {
 
   if (checkoutItems) {
     document.querySelector(".subtotal-checkout").innerHTML = `$ ${totalPrice}`;
-    document.querySelector(".total-checkout").innerHTML = `$ ${
+    document.querySelector(".total-checkout").innerHTML = `$ {
       totalPrice + 20
     }`;
   }
 
+  // Add event listeners for cart controls
   document
     .querySelectorAll(".increase-quantity")
     .forEach((btn) =>
@@ -154,6 +144,7 @@ function updateCart() {
   );
 }
 
+// Initialize cart on page load
 updateCart();
 
 function increaseQuantity(index) {
@@ -186,3 +177,6 @@ function updateButtonsState(productId) {
       btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> add to cart`;
     });
 }
+
+// Global function to be called from items_home.js
+window.addToCart = addToCart;
