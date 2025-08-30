@@ -27,40 +27,41 @@ fetch("public/products.json")
 
       if (product.old_price) {
         swipers["sale"].innerHTML += `
-          <a href="productDetails.html?id=${product.id}">
-            <div class="swiper-slide product">
-              <span class="sale-present">%${percentDisc}</span>
-              <div class="img-product">
-                 <a href="productDetails.html?id=${product.id}"><img src="${
+          <div class="swiper-slide product">
+            <span class="sale-present">%${percentDisc}</span>
+            <div class="img-product">
+               <a href="productDetails.html?id=${product.id}"><img src="${
           product.img
         }" alt=""></a>
-              </div>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p class="name-product"> <a href="productDetails.html?id=${
-                product.id
-              }">${product.name}</a></p>
-              <div class="price">
-                <p><span>$${product.price}</span></p>
-                <p class="old-price">$${product.old_price}</p>
-              </div>
-              <div class="icons">
-                <span class="btn-add-cart ${
-                  isInCart ? "active" : ""
-                }" data-id="${product.id}">
-                  <i class="fa-solid fa-cart-shopping"></i>
-                  ${isInCart ? "Item in cart" : "add to cart"}
-                </span>
-                <span class="icon-product"><i class="fa-regular fa-heart"></i></span>
-              </div>
             </div>
-            </a>
-          `;
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="name-product"> <a href="productDetails.html?id=${
+              product.id
+            }">${product.name}</a></p>
+            <div class="price">
+              <p><span>$${product.price}</span></p>
+              <p class="old-price">$${product.old_price}</p>
+            </div>
+            <div class="icons">
+              <span class="btn-add-cart ${isInCart ? "active" : ""}" data-id="${
+          product.id
+        }">
+                <i class="fa-solid fa-cart-shopping"></i>
+                ${isInCart ? "Item in cart" : "add to cart"}
+              </span>
+              <span class="icon-product"><i class="fa-regular fa-heart"></i></span>
+            </div>
+            <a href="productDetails.html?id=${
+              product.id
+            }" class="card-link"></a>
+          </div>
+        `;
       }
     });
 
@@ -83,39 +84,40 @@ fetch("public/products.json")
         : "";
 
       let html = `
-           <a href="productDetails.html?id=${product.id}">
-            <div class="swiper-slide product" id="product-card">
-              ${percentDiscDiv}
-              <div class="img-product">
-                <a href="productDetails.html?id=${product.id}"><img src="${
+           <div class="swiper-slide product" id="product-card">
+             ${percentDiscDiv}
+             <div class="img-product">
+               <a href="productDetails.html?id=${product.id}"><img src="${
         product.img
       }" alt=""></a>
-              </div>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p class="name-product"><a href="productDetails.html?id=${
-                product.id
-              }">${product.name}</a></p>
-              <div class="price">
-                <p><span>$${product.price}</span></p>
-                ${oldPriceParagraph}
-              </div>
-              <div class="icons">
-                <span class="btn-add-cart ${
-                  isInCart ? "active" : ""
-                }" data-id="${product.id}">
-                  <i class="fa-solid fa-cart-shopping"></i>
-                  ${isInCart ? "Item in cart" : "add to cart"}
-                </span>
-                <span class="icon-product"><i class="fa-regular fa-heart"></i></span>
-              </div>
-            </div>
-           </a>
+             </div>
+             <div class="stars">
+               <i class="fa-solid fa-star"></i>
+               <i class="fa-solid fa-star"></i>
+               <i class="fa-solid fa-star"></i>
+               <i class="fa-solid fa-star"></i>
+               <i class="fa-solid fa-star"></i>
+             </div>
+             <p class="name-product"><a href="productDetails.html?id=${
+               product.id
+             }">${product.name}</a></p>
+             <div class="price">
+               <p><span>$${product.price}</span></p>
+               ${oldPriceParagraph}
+             </div>
+             <div class="icons">
+               <span class="btn-add-cart ${
+                 isInCart ? "active" : ""
+               }" data-id="${product.id}">
+                 <i class="fa-solid fa-cart-shopping"></i>
+                 ${isInCart ? "Item in cart" : "add to cart"}
+               </span>
+               <span class="icon-product"><i class="fa-regular fa-heart"></i></span>
+             </div>
+             <a href="productDetails.html?id=${
+               product.id
+             }" class="card-link"></a>
+           </div>
           `;
 
       swipers[key].innerHTML += html;
@@ -125,6 +127,9 @@ fetch("public/products.json")
     const addToCartButtons = document.querySelectorAll(".btn-add-cart");
     addToCartButtons.forEach((button) => {
       button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
         const productId = button.getAttribute("data-id");
         const selectedProduct = data.find((p) => p.id == productId);
 
@@ -137,6 +142,15 @@ fetch("public/products.json")
           btn.classList.add("active");
           btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in cart`;
         });
+      });
+    });
+
+    // Add event listeners to favorite buttons
+    const favoriteButtons = document.querySelectorAll(".icon-product");
+    favoriteButtons.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
       });
     });
   });

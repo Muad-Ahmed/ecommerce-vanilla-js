@@ -15,33 +15,17 @@ function open_menu() {
   navLinks.classList.toggle("active");
 }
 
-// Simple fetch to get products data
-fetch("public/products.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const addToCartButtons = document.querySelectorAll(".btn-add-cart");
-
-    addToCartButtons.forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const productId = event.target.getAttribute("data-id");
-        const selectedProduct = data.find((p) => p.id == productId);
-
-        addToCart(selectedProduct);
-
-        const allMatchingButtons = document.querySelectorAll(
-          `.btn-add-cart[data-id="${productId}"]`
-        );
-        allMatchingButtons.forEach((btn) => {
-          btn.classList.add("active");
-          btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in cart`;
-        });
-      });
-    });
-  });
-
 function addToCart(product) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push({ ...product, quantity: 1 });
+
+  // Check if product already exists in cart
+  const existingItem = cart.find((item) => item.id === product.id);
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCart();
 }
@@ -109,7 +93,7 @@ function updateCart() {
 
   if (checkoutItems) {
     document.querySelector(".subtotal-checkout").innerHTML = `$ ${totalPrice}`;
-    document.querySelector(".total-checkout").innerHTML = `$ {
+    document.querySelector(".total-checkout").innerHTML = `$ ${
       totalPrice + 20
     }`;
   }
