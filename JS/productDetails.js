@@ -7,9 +7,28 @@ const price = document.getElementById("price");
 const productBrand = document.getElementById("brand");
 const quantity = document.getElementById("quantity");
 
-fetch("public/products.json")
-  .then((response) => response.json())
-  .then((data) => {
+const paths = [
+  "/products.json",
+  "public/products.json",
+  "./public/products.json",
+];
+
+function fetchAny(paths) {
+  return new Promise((resolve, reject) => {
+    (function tryNext(i) {
+      if (i >= paths.length)
+        return reject(new Error("products.json not found"));
+      fetch(paths[i])
+        .then((res) => {
+          if (!res.ok) return tryNext(i + 1);
+          return res.json().then(resolve);
+        })
+        .catch(() => tryNext(i + 1));
+    })(0);
+  });
+}
+
+fetchAny(paths).then((data) => {
     const selectedProduct = data.find(
       (product) => product.id === Number(productId)
     );

@@ -15,28 +15,47 @@ function open_menu() {
   navLinks.classList.toggle("active");
 }
 
-fetch("public/products.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const addToCartButtons = document.querySelectorAll(".btn-add-cart");
+const paths = [
+  "/products.json",
+  "public/products.json",
+  "./public/products.json",
+];
 
-    addToCartButtons.forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const productId = event.target.getAttribute("data-id");
-        const selectedProduct = data.find((p) => p.id == productId);
+function fetchAny(paths) {
+  return new Promise((resolve, reject) => {
+    (function tryNext(i) {
+      if (i >= paths.length)
+        return reject(new Error("products.json not found"));
+      fetch(paths[i])
+        .then((res) => {
+          if (!res.ok) return tryNext(i + 1);
+          return res.json().then(resolve);
+        })
+        .catch(() => tryNext(i + 1));
+    })(0);
+  });
+}
 
-        addToCart(selectedProduct);
+fetchAny(paths).then((data) => {
+  const addToCartButtons = document.querySelectorAll(".btn-add-cart");
 
-        const allMatchingButtons = document.querySelectorAll(
-          `.btn-add-cart[data-id="${productId}"]`
-        );
-        allMatchingButtons.forEach((btn) => {
-          btn.classList.add("active");
-          btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in cart`;
-        });
+  addToCartButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const productId = event.target.getAttribute("data-id");
+      const selectedProduct = data.find((p) => p.id == productId);
+
+      addToCart(selectedProduct);
+
+      const allMatchingButtons = document.querySelectorAll(
+        `.btn-add-cart[data-id="${productId}"]`
+      );
+      allMatchingButtons.forEach((btn) => {
+        btn.classList.add("active");
+        btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in cart`;
       });
     });
   });
+});
 
 function addToCart(product) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];

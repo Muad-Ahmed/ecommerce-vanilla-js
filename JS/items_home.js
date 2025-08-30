@@ -1,39 +1,58 @@
-fetch("public/products.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const paths = [
+  "/products.json",
+  "public/products.json",
+  "./public/products.json",
+];
 
-    const swipers = {
-      sale: document.getElementById("swiper-items-sale"),
-      electronics: document.getElementById("swiper-electronics"),
-      appliances: document.getElementById("swiper-appliances"),
-      mobiles: document.getElementById("swiper-mobiles"),
-    };
+function fetchAny(paths) {
+  return new Promise((resolve, reject) => {
+    (function tryNext(i) {
+      if (i >= paths.length)
+        return reject(new Error("products.json not found"));
+      fetch(paths[i])
+        .then((res) => {
+          if (!res.ok) return tryNext(i + 1);
+          return res.json().then(resolve);
+        })
+        .catch(() => tryNext(i + 1));
+    })(0);
+  });
+}
 
-    // Products with discount
-    data.forEach((product) => {
-      const isInCart = cart.some((item) => item.id === product.id);
-      const oldPriceParagraph = product.old_price
-        ? `<p class="old-price">$${product.old_price}</p>`
-        : "";
-      const percentDisc = product.old_price
-        ? Math.floor(
-            ((product.old_price - product.price) / product.old_price) * 100
-          )
-        : 0;
-      const percentDiscDiv = product.old_price
-        ? `<span class="sale-present">%${percentDisc}</span>`
-        : "";
+fetchAny(paths).then((data) => {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      if (product.old_price) {
-        swipers["sale"].innerHTML += `
+  const swipers = {
+    sale: document.getElementById("swiper-items-sale"),
+    electronics: document.getElementById("swiper-electronics"),
+    appliances: document.getElementById("swiper-appliances"),
+    mobiles: document.getElementById("swiper-mobiles"),
+  };
+
+  // Products with discount
+  data.forEach((product) => {
+    const isInCart = cart.some((item) => item.id === product.id);
+    const oldPriceParagraph = product.old_price
+      ? `<p class="old-price">$${product.old_price}</p>`
+      : "";
+    const percentDisc = product.old_price
+      ? Math.floor(
+          ((product.old_price - product.price) / product.old_price) * 100
+        )
+      : 0;
+    const percentDiscDiv = product.old_price
+      ? `<span class="sale-present">%${percentDisc}</span>`
+      : "";
+
+    if (product.old_price) {
+      swipers["sale"].innerHTML += `
         <a href="productDetails.html?id=${product.id}">
           <div class="swiper-slide product">
             <span class="sale-present">%${percentDisc}</span>
             <div class="img-product">
                <a href="productDetails.html?id=${product.id}"><img src="${
-          product.img
-        }" alt=""></a>
+        product.img
+      }" alt=""></a>
             </div>
             <div class="stars">
               <i class="fa-solid fa-star"></i>
@@ -51,8 +70,8 @@ fetch("public/products.json")
             </div>
             <div class="icons">
               <span class="btn-add-cart ${isInCart ? "active" : ""}" data-id="${
-          product.id
-        }">
+        product.id
+      }">
                 <i class="fa-solid fa-cart-shopping"></i>
                 ${isInCart ? "Item in cart" : "add to cart"}
               </span>
@@ -61,35 +80,35 @@ fetch("public/products.json")
           </div>
           </a>
         `;
-      }
-    });
+    }
+  });
 
-    data.forEach((product) => {
-      let key;
-      if (product.category in swipers) key = product.category;
-      else return;
+  data.forEach((product) => {
+    let key;
+    if (product.category in swipers) key = product.category;
+    else return;
 
-      const isInCart = cart.some((item) => item.id === product.id);
-      const oldPriceParagraph = product.old_price
-        ? `<p class="old-price">$${product.old_price}</p>`
-        : "";
-      const percentDisc = product.old_price
-        ? Math.floor(
-            ((product.old_price - product.price) / product.old_price) * 100
-          )
-        : 0;
-      const percentDiscDiv = product.old_price
-        ? `<span class="sale-present">%${percentDisc}</span>`
-        : "";
+    const isInCart = cart.some((item) => item.id === product.id);
+    const oldPriceParagraph = product.old_price
+      ? `<p class="old-price">$${product.old_price}</p>`
+      : "";
+    const percentDisc = product.old_price
+      ? Math.floor(
+          ((product.old_price - product.price) / product.old_price) * 100
+        )
+      : 0;
+    const percentDiscDiv = product.old_price
+      ? `<span class="sale-present">%${percentDisc}</span>`
+      : "";
 
-      let html = `
+    let html = `
          <a href="productDetails.html?id=${product.id}">
           <div class="swiper-slide product" id="product-card">
             ${percentDiscDiv}
             <div class="img-product">
               <a href="productDetails.html?id=${product.id}"><img src="${
-        product.img
-      }" alt=""></a>
+      product.img
+    }" alt=""></a>
             </div>
             <div class="stars">
               <i class="fa-solid fa-star"></i>
@@ -107,8 +126,8 @@ fetch("public/products.json")
             </div>
             <div class="icons">
               <span class="btn-add-cart ${isInCart ? "active" : ""}" data-id="${
-        product.id
-      }">
+      product.id
+    }">
                 <i class="fa-solid fa-cart-shopping"></i>
                 ${isInCart ? "Item in cart" : "add to cart"}
               </span>
@@ -118,6 +137,6 @@ fetch("public/products.json")
          </a>
         `;
 
-      swipers[key].innerHTML += html;
-    });
+    swipers[key].innerHTML += html;
   });
+});
