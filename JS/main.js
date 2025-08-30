@@ -15,40 +15,33 @@ function open_menu() {
   navLinks.classList.toggle("active");
 }
 
-// Simplified fetch function
-async function loadProducts() {
-  try {
-    const response = await fetch("public/products.json");
-    if (!response.ok) {
-      throw new Error("Failed to load products");
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error loading products:", error);
-    return [];
-  }
-}
+// Simple fetch to get products data
+fetch("public/products.json")
+  .then((response) => response.json())
+  .then((data) => {
+    const addToCartButtons = document.querySelectorAll(".btn-add-cart");
 
-// Global products data
-let productsData = [];
+    addToCartButtons.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        const productId = event.target.getAttribute("data-id");
+        const selectedProduct = data.find((p) => p.id == productId);
 
-// Load products data
-loadProducts().then((data) => {
-  productsData = data;
-  console.log("Products loaded successfully:", data.length);
-});
+        addToCart(selectedProduct);
+
+        const allMatchingButtons = document.querySelectorAll(
+          `.btn-add-cart[data-id="${productId}"]`
+        );
+        allMatchingButtons.forEach((btn) => {
+          btn.classList.add("active");
+          btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Item in cart`;
+        });
+      });
+    });
+  });
 
 function addToCart(product) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  // Check if product already exists in cart
-  const existingItem = cart.find((item) => item.id === product.id);
-  if (existingItem) {
-    existingItem.quantity++;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
-
+  cart.push({ ...product, quantity: 1 });
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCart();
 }
@@ -121,7 +114,6 @@ function updateCart() {
     }`;
   }
 
-  // Add event listeners for cart controls
   document
     .querySelectorAll(".increase-quantity")
     .forEach((btn) =>
@@ -144,7 +136,6 @@ function updateCart() {
   );
 }
 
-// Initialize cart on page load
 updateCart();
 
 function increaseQuantity(index) {
