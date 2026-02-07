@@ -2,8 +2,9 @@
   {
     "id": 0,
     "img": "./img/product/0.png",
-    "name": "SAMSUNG 55 Inch UHD 4K Smart TV With Receiver",
+    "name": "SAMSUNG 55 Inch UHD 4K Smart TV",
     "price": 350,
+    "old_price": 420,
     "category": "electronics",
     "brand": "SAMSUNG",
     "quantity": 38
@@ -11,52 +12,37 @@
   {
     "id": 1,
     "img": "./img/product/1.png",
-    "name": "Redmi 13C Dual SIM with 6GB RAM",
+    "name": "Redmi 13C Dual SIM 6GB RAM",
     "price": 280,
+    "old_price": 350,
     "category": "mobiles",
     "brand": "Redmi",
     "quantity": 55
   },
   {
     "id": 2,
+    "img": "./img/product/13.png",
+    "name": "Fuzzy Logic Rice Cooker 1.8L",
+    "price": 490,
+    "old_price": 550,
+    "category": "appliances",
+    "brand": "Generic",
+    "quantity": 51
+  },
+  {
+    "id": 3,
     "img": "./img/product/2.png",
-    "name": "Dell Laptop Latitude 5530 Core i7-1255U 8GB SSD",
+    "name": "Dell Laptop Latitude 5530 i7",
     "price": 400,
+    "old_price": 480,
     "category": "electronics",
     "brand": "Dell",
     "quantity": 62
   },
   {
-    "id": 3,
-    "img": "./img/product/3.png",
-    "name": "Canon EOS RP Mirrorless Camera",
-    "price": 530,
-    "category": "electronics",
-    "brand": "Canon",
-    "quantity": 14
-  },
-  {
     "id": 4,
-    "img": "./img/product/4.png",
-    "name": "OPPO A18 128GB 4GB Glowing Black",
-    "price": 250,
-    "category": "mobiles",
-    "brand": "OPPO",
-    "quantity": 47
-  },
-  {
-    "id": 5,
-    "img": "./img/product/5.png",
-    "name": "Samsung 27-Inch G55C Odyssey QHD 4k",
-    "price": 280,
-    "category": "electronics",
-    "brand": "Samsung",
-    "quantity": 21
-  },
-  {
-    "id": 6,
     "img": "./img/product/6.png",
-    "name": "Infinix Smart (Galaxy White, 4GB RAM, 64GB Storage)",
+    "name": "Infinix Smart Galaxy White",
     "price": 220,
     "old_price": 300,
     "category": "mobiles",
@@ -64,93 +50,39 @@
     "quantity": 58
   },
   {
-    "id": 7,
-    "img": "./img/product/7.png",
-    "name": "HP Victus Gaming Laptop 8RAM SSD",
-    "price": 370,
-    "category": "electronics",
-    "brand": "HP",
-    "quantity": 11
-  },
-  {
-    "id": 8,
-    "img": "./img/product/8.png",
-    "name": "Xiaomi Redmi 13C Dual SIM 8GB",
-    "price": 320,
-    "category": "mobiles",
-    "brand": "Xiaomi",
-    "quantity": 3
-  },
-  {
-    "id": 9,
-    "img": "./img/product/9.png",
-    "name": "Handheld Barcode Scanner 1D/2D/QR Code",
-    "price": 80,
-    "old_price": 100,
-    "category": "electronics",
-    "brand": "Generic",
-    "quantity": 25
-  },
-  {
-    "id": 10,
-    "img": "./img/product/10.png",
-    "name": "Large Venue building mapping Projector",
-    "price": 300,
-    "category": "electronics",
-    "brand": "Generic",
-    "quantity": 49
-  },
-  {
-    "id": 11,
-    "img": "./img/product/11.png",
-    "name": "Infinix Hot 40i (RAM: 4+4GB, 128GB)",
-    "price": 260,
-    "old_price": 300,
-    "category": "mobiles",
-    "brand": "Infinix",
-    "quantity": 67
-  },
-  {
-    "id": 12,
-    "img": "./img/product/12.png",
-    "name": "HP DeskJet 2710 Printer, All-in-One",
-    "price": 370,
-    "category": "electronics",
-    "brand": "HP",
-    "quantity": 70
-  },
-  {
-    "id": 13,
-    "img": "./img/product/13.png",
-    "name": "Fuzzy Logic Rice Cooker DIGITAL-JAR 1.8L 940W – HD4515/67",
-    "price": 490,
-    "category": "appliances",
-    "brand": "Generic",
-    "quantity": 51
-  },
-  {
-    "id": 14,
+    "id": 5,
     "img": "./img/product/14.png",
-    "name": "Sencor STS 5070SS Electric Toaster for Four Slices",
+    "name": "Sencor STS 5070SS Toaster",
     "price": 340,
+    "old_price": 400,
     "category": "appliances",
     "brand": "Sencor",
     "quantity": 19
   },
   {
-    "id": 15,
-    "img": "./img/product/15.png",
-    "name": "Infinix Smart 6 Plus (Miracle Black)",
-    "price": 240,
-    "old_price": 300,
-    "category": "mobiles",
-    "brand": "Infinix",
-    "quantity": 44
+    "id": 6,
+    "img": "./img/product/3.png",
+    "name": "Canon EOS RP Mirrorless Camera",
+    "price": 530,
+    "old_price": 600,
+    "category": "electronics",
+    "brand": "Canon",
+    "quantity": 14
   },
   {
-    "id": 16,
+    "id": 7,
+    "img": "./img/product/4.png",
+    "name": "OPPO A18 128GB Glowing Black",
+    "price": 250,
+    "old_price": 310,
+    "category": "mobiles",
+    "brand": "OPPO",
+    "quantity": 47
+  },
+  {
+    "id": 8,
     "img": "./img/product/16.png",
-    "name": "Washing Machine 959 Series 8kg Senator Aqua SX, Silver",
+    "name": "Washing Machine 8kg Senator",
     "price": 600,
     "old_price": 700,
     "category": "appliances",
@@ -158,36 +90,59 @@
     "quantity": 8
   },
   {
-    "id": 17,
-    "img": "./img/product/17.png",
-    "name": "HIKVISION PTZ Camera 4K Outdoo",
-    "price": 185,
+    "id": 9,
+    "img": "./img/product/5.png",
+    "name": "Samsung 27-Inch Odyssey QHD",
+    "price": 280,
+    "old_price": 340,
     "category": "electronics",
-    "brand": "HIKVISION",
-    "quantity": 30
+    "brand": "Samsung",
+    "quantity": 21
   },
   {
-    "id": 18,
-    "img": "./img/product/18.png",
-    "name": "OPPO Reno11 5G 256GB 12GB",
-    "price": 225,
+    "id": 10,
+    "img": "./img/product/11.png",
+    "name": "Infinix Hot 40i 128GB",
+    "price": 260,
+    "old_price": 300,
     "category": "mobiles",
-    "brand": "OPPO",
-    "quantity": 53
+    "brand": "Infinix",
+    "quantity": 67
   },
   {
-    "id": 19,
+    "id": 11,
     "img": "./img/product/19.png",
-    "name": "VIVAX kettle WH-175L with a capacity of 1.7 ",
+    "name": "VIVAX Kettle WH-175L 1.7L",
     "price": 140,
+    "old_price": 180,
     "category": "appliances",
     "brand": "VIVAX",
     "quantity": 66
   },
   {
-    "id": 20,
+    "id": 12,
+    "img": "./img/product/7.png",
+    "name": "HP Victus Gaming Laptop 8RAM",
+    "price": 370,
+    "old_price": 450,
+    "category": "electronics",
+    "brand": "HP",
+    "quantity": 11
+  },
+  {
+    "id": 13,
+    "img": "./img/product/8.png",
+    "name": "Xiaomi Redmi 13C Dual 8GB",
+    "price": 320,
+    "old_price": 380,
+    "category": "mobiles",
+    "brand": "Xiaomi",
+    "quantity": 3
+  },
+  {
+    "id": 14,
     "img": "./img/product/20.png",
-    "name": "Kenstar Ester ABS Plastic 750W Mixer Grinder",
+    "name": "Kenstar 750W Mixer Grinder",
     "price": 280,
     "old_price": 330,
     "category": "appliances",
@@ -195,40 +150,446 @@
     "quantity": 4
   },
   {
-    "id": 21,
-    "img": "./img/product/21.png",
-    "name": "Multifunctional Food Processor",
-    "price": 350,
-    "category": "appliances",
+    "id": 15,
+    "img": "./img/product/9.png",
+    "name": "Handheld Barcode Scanner 2D",
+    "price": 80,
+    "old_price": 100,
+    "category": "electronics",
     "brand": "Generic",
-    "quantity": 17
+    "quantity": 25
   },
   {
-    "id": 22,
+    "id": 16,
+    "id_origin": 15,
+    "img": "./img/product/15.png",
+    "name": "Infinix Smart 6 Plus Black",
+    "price": 240,
+    "category": "mobiles",
+    "brand": "Infinix",
+    "quantity": 44
+  },
+  {
+    "id": 17,
     "img": "./img/product/22.png",
-    "name": "Zanussi Washing Machine 8 Kg 1200 RPM ",
+    "name": "Zanussi Washing Machine 8 Kg",
     "price": 580,
     "category": "appliances",
     "brand": "Zanussi",
     "quantity": 60
   },
   {
-    "id": 23,
+    "id": 18,
+    "img": "./img/product/10.png",
+    "name": "Venue mapping Projector",
+    "price": 300,
+    "category": "electronics",
+    "brand": "Generic",
+    "quantity": 49
+  },
+  {
+    "id": 19,
+    "img": "./img/product/18.png",
+    "name": "OPPO Reno11 5G 256GB",
+    "price": 225,
+    "category": "mobiles",
+    "brand": "OPPO",
+    "quantity": 53
+  },
+  {
+    "id": 20,
     "img": "./img/product/23.png",
-    "name": "Sharp 42 Lt Electronic Oven Convection",
+    "name": "Sharp 42 Lt Electronic Oven",
     "price": 400,
     "category": "appliances",
     "brand": "Sharp",
     "quantity": 28
   },
   {
-    "id": 24,
+    "id": 21,
+    "img": "./img/product/12.png",
+    "name": "HP DeskJet 2710 All-in-One",
+    "price": 370,
+    "category": "electronics",
+    "brand": "HP",
+    "quantity": 70
+  },
+  {
+    "id": 22,
     "img": "./img/product/24.png",
-    "name": "Lenovo Monitor Legion R27fc-30 Gaming Curved",
+    "name": "Lenovo Legion R27fc Curved",
     "price": 300,
-    "old_price": 380,
     "category": "electronics",
     "brand": "Lenovo",
     "quantity": 56
+  },
+  {
+    "id": 23,
+    "img": "./img/product/21.png",
+    "name": "Food Processor Multifunction",
+    "price": 350,
+    "category": "appliances",
+    "brand": "Generic",
+    "quantity": 17
+  },
+  {
+    "id": 24,
+    "img": "./img/product/17.png",
+    "name": "HIKVISION PTZ Camera 4K",
+    "price": 185,
+    "category": "electronics",
+    "brand": "HIKVISION",
+    "quantity": 30
+  },
+  {
+    "id": 25,
+    "img": "./img/product/1.png",
+    "name": "Redmi 13C - Version 2.0",
+    "price": 280,
+    "category": "mobiles",
+    "brand": "Redmi",
+    "quantity": 20
+  },
+  {
+    "id": 26,
+    "img": "./img/product/13.png",
+    "name": "Rice Cooker Platinum Edition",
+    "price": 490,
+    "category": "appliances",
+    "brand": "Generic",
+    "quantity": 10
+  },
+  {
+    "id": 27,
+    "img": "./img/product/2.png",
+    "name": "Dell Latitude - Silver Case",
+    "price": 410,
+    "category": "electronics",
+    "brand": "Dell",
+    "quantity": 5
+  },
+  {
+    "id": 28,
+    "img": "./img/product/4.png",
+    "name": "OPPO A18 Pro Max",
+    "price": 250,
+    "category": "mobiles",
+    "brand": "OPPO",
+    "quantity": 12
+  },
+  {
+    "id": 29,
+    "img": "./img/product/16.png",
+    "name": "Senator Aqua Eco Washing",
+    "price": 600,
+    "category": "appliances",
+    "brand": "Senator",
+    "quantity": 3
+  },
+  {
+    "id": 30,
+    "img": "./img/product/5.png",
+    "name": "Odyssey Monitor G5",
+    "price": 285,
+    "category": "electronics",
+    "brand": "Samsung",
+    "quantity": 7
+  },
+  {
+    "id": 31,
+    "img": "./img/product/18.png",
+    "name": "OPPO Reno11 Global",
+    "price": 225,
+    "category": "mobiles",
+    "brand": "OPPO",
+    "quantity": 9
+  },
+  {
+    "id": 32,
+    "img": "./img/product/19.png",
+    "name": "Kettle Luxury White 1.7L",
+    "price": 140,
+    "category": "appliances",
+    "brand": "VIVAX",
+    "quantity": 25
+  },
+  {
+    "id": 33,
+    "img": "./img/product/0.png",
+    "name": "SAMSUNG UHD Smart TV Pro",
+    "price": 350,
+    "category": "electronics",
+    "brand": "SAMSUNG",
+    "quantity": 15
+  },
+  {
+    "id": 34,
+    "img": "./img/product/8.png",
+    "name": "Xiaomi Redmi 13C Blue Edition",
+    "price": 320,
+    "category": "mobiles",
+    "brand": "Xiaomi",
+    "quantity": 4
+  },
+  {
+    "id": 35,
+    "img": "./img/product/20.png",
+    "name": "Kenstar Mixer Grinder 750W",
+    "price": 280,
+    "category": "appliances",
+    "brand": "Kenstar",
+    "quantity": 30
+  },
+  {
+    "id": 36,
+    "img": "./img/product/7.png",
+    "name": "HP Victus - Dark Mode",
+    "price": 375,
+    "category": "electronics",
+    "brand": "HP",
+    "quantity": 6
+  },
+  {
+    "id": 37,
+    "img": "./img/product/11.png",
+    "name": "Infinix Hot 40i Limited",
+    "price": 260,
+    "category": "mobiles",
+    "brand": "Infinix",
+    "quantity": 18
+  },
+  {
+    "id": 38,
+    "img": "./img/product/23.png",
+    "name": "Sharp Oven XL Digital",
+    "price": 400,
+    "category": "appliances",
+    "brand": "Sharp",
+    "quantity": 5
+  },
+  {
+    "id": 39,
+    "img": "./img/product/24.png",
+    "name": "Lenovo Legion R27fc Black",
+    "price": 305,
+    "category": "electronics",
+    "brand": "Lenovo",
+    "quantity": 22
+  },
+  {
+    "id": 40,
+    "img": "./img/product/10.png",
+    "name": "Smart Mapping Projector 4K",
+    "price": 310,
+    "category": "electronics",
+    "brand": "Generic",
+    "quantity": 10
+  },
+  {
+    "id": 41,
+    "img": "./img/product/15.png",
+    "name": "Infinix Smart 6 Plus Dual",
+    "price": 245,
+    "category": "mobiles",
+    "brand": "Infinix",
+    "quantity": 11
+  },
+  {
+    "id": 42,
+    "img": "./img/product/22.png",
+    "name": "Zanussi Pro Washing Unit",
+    "price": 585,
+    "category": "appliances",
+    "brand": "Zanussi",
+    "quantity": 14
+  },
+  {
+    "id": 43,
+    "img": "./img/product/12.png",
+    "name": "HP DeskJet Ink Advantage",
+    "price": 375,
+    "category": "electronics",
+    "brand": "HP",
+    "quantity": 12
+  },
+  {
+    "id": 44,
+    "img": "./img/product/1.png",
+    "name": "Redmi 13C Global Version",
+    "price": 285,
+    "category": "mobiles",
+    "brand": "Redmi",
+    "quantity": 30
+  },
+  {
+    "id": 45,
+    "img": "./img/product/21.png",
+    "name": "Professional Food Processor",
+    "price": 355,
+    "category": "appliances",
+    "brand": "Generic",
+    "quantity": 8
+  },
+  {
+    "id": 46,
+    "img": "./img/product/17.png",
+    "name": "HIKVISION Outdoor Security",
+    "price": 190,
+    "category": "electronics",
+    "brand": "HIKVISION",
+    "quantity": 5
+  },
+  {
+    "id": 47,
+    "img": "./img/product/18.png",
+    "name": "OPPO Reno11 Pro Look",
+    "price": 230,
+    "category": "mobiles",
+    "brand": "OPPO",
+    "quantity": 4
+  },
+  {
+    "id": 48,
+    "img": "./img/product/13.png",
+    "name": "Philips Rice Cooker Advanced",
+    "price": 500,
+    "category": "appliances",
+    "brand": "Generic",
+    "quantity": 2
+  },
+  {
+    "id": 49,
+    "img": "./img/product/3.png",
+    "name": "Canon EOS Mirrorless Pro",
+    "price": 540,
+    "category": "electronics",
+    "brand": "Canon",
+    "quantity": 3
+  },
+  {
+    "id": 50,
+    "img": "./img/product/6.png",
+    "name": "Infinix Smart 7 - New",
+    "price": 225,
+    "category": "mobiles",
+    "brand": "Infinix",
+    "quantity": 21
+  },
+  {
+    "id": 51,
+    "img": "./img/product/14.png",
+    "name": "Sencor Stainless Toaster",
+    "price": 345,
+    "category": "appliances",
+    "brand": "Sencor",
+    "quantity": 12
+  },
+  {
+    "id": 52,
+    "img": "./img/product/0.png",
+    "name": "SAMSUNG Curved Smart TV",
+    "price": 360,
+    "category": "electronics",
+    "brand": "SAMSUNG",
+    "quantity": 6
+  },
+  {
+    "id": 53,
+    "img": "./img/product/4.png",
+    "name": "OPPO A18 Dynamic",
+    "price": 255,
+    "category": "mobiles",
+    "brand": "OPPO",
+    "quantity": 33
+  },
+  {
+    "id": 54,
+    "img": "./img/product/22.png",
+    "name": "Zanussi Home Laundry",
+    "price": 590,
+    "category": "appliances",
+    "brand": "Zanussi",
+    "quantity": 7
+  },
+  {
+    "id": 55,
+    "img": "./img/product/5.png",
+    "name": "Samsung 4K Gaming Screen",
+    "price": 290,
+    "category": "electronics",
+    "brand": "Samsung",
+    "quantity": 19
+  },
+  {
+    "id": 56,
+    "img": "./img/product/11.png",
+    "name": "Infinix Hot Speed Edition",
+    "price": 265,
+    "category": "mobiles",
+    "brand": "Infinix",
+    "quantity": 25
+  },
+  {
+    "id": 57,
+    "img": "./img/product/23.png",
+    "name": "Sharp Master Electric Oven",
+    "price": 410,
+    "category": "appliances",
+    "brand": "Sharp",
+    "quantity": 9
+  },
+  {
+    "id": 58,
+    "img": "./img/product/7.png",
+    "name": "HP Victus - Core i7 Edition",
+    "price": 380,
+    "category": "electronics",
+    "brand": "HP",
+    "quantity": 14
+  },
+  {
+    "id": 59,
+    "img": "./img/product/8.png",
+    "name": "Xiaomi Redmi 13C Dual Pro",
+    "price": 325,
+    "category": "mobiles",
+    "brand": "Xiaomi",
+    "quantity": 8
+  },
+  {
+    "id": 60,
+    "img": "./img/product/19.png",
+    "name": "VIVAX Smart Kettle Pro",
+    "price": 145,
+    "category": "appliances",
+    "brand": "VIVAX",
+    "quantity": 16
+  },
+  {
+    "id": 61,
+    "img": "./img/product/2.png",
+    "name": "Dell Latitude - Tech Edition",
+    "price": 415,
+    "category": "electronics",
+    "brand": "Dell",
+    "quantity": 11
+  },
+  {
+    "id": 62,
+    "img": "./img/product/15.png",
+    "name": "Infinix Smart Ultra",
+    "price": 250,
+    "category": "mobiles",
+    "brand": "Infinix",
+    "quantity": 7
+  },
+  {
+    "id": 63,
+    "img": "./img/product/20.png",
+    "name": "Kenstar Grinder Special",
+    "price": 290,
+    "category": "appliances",
+    "brand": "Kenstar",
+    "quantity": 5
   }
 ]
