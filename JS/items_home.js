@@ -20,7 +20,7 @@ fetch("public/products.json")
         : "";
       const percentDisc = product.old_price
         ? Math.floor(
-            ((product.old_price - product.price) / product.old_price) * 100
+            ((product.old_price - product.price) / product.old_price) * 100,
           )
         : 0;
       const percentDiscDiv = product.old_price
@@ -33,8 +33,8 @@ fetch("public/products.json")
             <span class="sale-present">%${percentDisc}</span>
             <div class="img-product">
                <a href="productDetails.html?id=${product.id}"><img src="${
-          product.img
-        }" alt=""></a>
+                 product.img
+               }" alt=""></a>
             </div>
             <div class="stars">
               <i class="fa-solid fa-star"></i>
@@ -52,8 +52,8 @@ fetch("public/products.json")
             </div>
             <div class="icons">
               <span class="btn-add-cart ${isInCart ? "active" : ""}" data-id="${
-          product.id
-        }">
+                product.id
+              }">
                 <i class="fa-solid fa-cart-shopping"></i>
                 ${isInCart ? "Item in cart" : "add to cart"}
               </span>
@@ -85,7 +85,7 @@ fetch("public/products.json")
         : "";
       const percentDisc = product.old_price
         ? Math.floor(
-            ((product.old_price - product.price) / product.old_price) * 100
+            ((product.old_price - product.price) / product.old_price) * 100,
           )
         : 0;
       const percentDiscDiv = product.old_price
@@ -97,8 +97,8 @@ fetch("public/products.json")
              ${percentDiscDiv}
              <div class="img-product">
                <a href="productDetails.html?id=${product.id}"><img src="${
-        product.img
-      }" alt=""></a>
+                 product.img
+               }" alt=""></a>
              </div>
              <div class="stars">
                <i class="fa-solid fa-star"></i>
@@ -151,7 +151,7 @@ fetch("public/products.json")
         addToCart(selectedProduct);
 
         const allMatchingButtons = document.querySelectorAll(
-          `.btn-add-cart[data-id="${productId}"]`
+          `.btn-add-cart[data-id="${productId}"]`,
         );
         allMatchingButtons.forEach((btn) => {
           btn.classList.add("active");
@@ -174,11 +174,11 @@ fetch("public/products.json")
 
         // Update all matching favorite buttons
         const allMatchingButtons = document.querySelectorAll(
-          `.icon-product[data-id="${productId}"]`
+          `.icon-product[data-id="${productId}"]`,
         );
         allMatchingButtons.forEach((btn) => {
           const isInFavorites = JSON.parse(
-            localStorage.getItem("favorites") || "[]"
+            localStorage.getItem("favorites") || "[]",
           ).some((item) => item.id == productId);
 
           if (isInFavorites) {
@@ -191,4 +191,58 @@ fetch("public/products.json")
         });
       });
     });
+    initProductSwipers();
+    function initProductSwipers() {
+      document.querySelectorAll(".slide-product .swiper").forEach((slider) => {
+        const wrapper = slider.querySelector(".swiper-wrapper");
+        const slidesCount = wrapper.querySelectorAll(".swiper-slide").length;
+
+        if (!slidesCount) return;
+
+        const swiperInstance = new Swiper(slider, {
+          wrapperClass: "swiper-wrapper",
+          slideClass: "swiper-slide",
+
+          slidesPerView: 5,
+          spaceBetween: 20,
+
+          loop: slidesCount > 5,
+
+          autoplay:
+            slidesCount > 5
+              ? {
+                  delay: 2500,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: false,
+                }
+              : false,
+
+          navigation: {
+            nextEl: ".top-slide .swiper-button-next",
+            prevEl: ".top-slide .swiper-button-prev",
+          },
+
+          observer: true,
+          observeParents: true,
+
+          watchSlidesProgress: true,
+          watchSlidesVisibility: true,
+
+          breakpoints: {
+            1200: { slidesPerView: 5 },
+            1000: { slidesPerView: 4 },
+            700: { slidesPerView: 3 },
+            0: { slidesPerView: 2 },
+          },
+        });
+
+        swiperInstance.on("touchEnd", () => {
+          swiperInstance.autoplay?.start();
+        });
+
+        swiperInstance.on("slideChange", () => {
+          swiperInstance.autoplay?.start();
+        });
+      });
+    }
   });
