@@ -102,21 +102,21 @@ function updateCart() {
     .querySelectorAll(".increase-quantity")
     .forEach((btn) =>
       btn.addEventListener("click", (e) =>
-        increaseQuantity(e.target.getAttribute("data-index"))
-      )
+        increaseQuantity(e.target.getAttribute("data-index")),
+      ),
     );
   document
     .querySelectorAll(".decrease-quantity")
     .forEach((btn) =>
       btn.addEventListener("click", (e) =>
-        decreaseQuantity(e.target.getAttribute("data-index"))
-      )
+        decreaseQuantity(e.target.getAttribute("data-index")),
+      ),
     );
   document.querySelectorAll(".delete-item").forEach((btn) =>
     btn.addEventListener("click", (e) => {
       const idx = e.target.closest("button").getAttribute("data-index");
       removeFromCart(idx);
-    })
+    }),
   );
 }
 
@@ -197,3 +197,11 @@ window.toggleFavorite = toggleFavorite;
 
 // Initialize favorite count on page load
 updateFavoriteCount();
+
+// Clear search input on page load (specifically when navigating back)
+window.addEventListener("pageshow", (event) => {
+  const searchInput = document.getElementById("search");
+  if (searchInput) {
+    searchInput.value = "";
+  }
+});
