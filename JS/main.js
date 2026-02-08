@@ -1,8 +1,27 @@
+// Selecting elements
 let categoryNavList = document.querySelector(".category-nav-list");
+const categoryNav = document.querySelector(".category-nav");
 
+// 1. Toggle menu when clicking the button
 function Open_Categ_list() {
   categoryNavList.classList.toggle("active");
 }
+
+// 2. Handle all clicks on the document
+document.addEventListener("click", (event) => {
+  // Check if the menu is currently open
+  if (categoryNavList.classList.contains("active")) {
+    // A. If clicking outside the entire category-nav
+    const isClickInside = categoryNav.contains(event.target);
+
+    // B. If clicking on a link inside the list
+    const isLinkClick = event.target.tagName === "A";
+
+    if (!isClickInside || isLinkClick) {
+      categoryNavList.classList.remove("active");
+    }
+  }
+});
 
 function open_close_cart() {
   let cartEl = document.querySelector(".cart");
