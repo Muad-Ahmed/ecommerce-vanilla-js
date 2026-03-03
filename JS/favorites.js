@@ -14,7 +14,11 @@ function loadFavorites() {
   emptyState.style.display = "none";
 
   // Get all products data to match with favorites
-  fetch("public/products.json")
+  fetch(
+    window.location.pathname.startsWith("/html/")
+      ? "../public/products.json"
+      : "public/products.json",
+  )
     .then((response) => response.json())
     .then((data) => {
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -22,7 +26,7 @@ function loadFavorites() {
       container.innerHTML = "";
 
       favorites.forEach((favorite) => {
-        const product = data.find((p) => p.id === favorite.id);
+        const product = data.find((p) => Number(p.id) === Number(favorite.id));
         if (!product) return;
 
         const isInCart = cart.some((item) => item.id === product.id);
@@ -31,7 +35,7 @@ function loadFavorites() {
           : "";
         const percentDisc = product.old_price
           ? Math.floor(
-              ((product.old_price - product.price) / product.old_price) * 100
+              ((product.old_price - product.price) / product.old_price) * 100,
             )
           : 0;
         const percentDiscDiv = product.old_price
@@ -42,9 +46,7 @@ function loadFavorites() {
           <div class="product">
             ${percentDiscDiv}
             <div class="img-product">
-              <a href="productDetails.html?id=${product.id}"><img src="${
-          product.img
-        }" alt=""></a>
+              <a href="html/productDetails.html?id=${product.id}"><img src="${resolveImg(product.img)}" alt=""></a>
             </div>
             <div class="stars">
               <i class="fa-solid fa-star"></i>
@@ -53,7 +55,7 @@ function loadFavorites() {
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
             </div>
-            <p class="name-product"><a href="productDetails.html?id=${
+            <p class="name-product"><a href="html/productDetails.html?id=${
               product.id
             }">${product.name}</a></p>
             <div class="price">
@@ -62,8 +64,8 @@ function loadFavorites() {
             </div>
             <div class="icons">
               <span class="btn-add-cart ${isInCart ? "active" : ""}" data-id="${
-          product.id
-        }">
+                product.id
+              }">
                 <i class="fa-solid fa-cart-shopping"></i>
                 ${isInCart ? "Item in cart" : "add to cart"}
               </span>
@@ -71,7 +73,7 @@ function loadFavorites() {
                 <i class="fa-solid fa-heart"></i>
               </span>
             </div>
-            <a href="productDetails.html?id=${
+            <a href="html/productDetails.html?id=${
               product.id
             }" class="card-link"></a>
           </div>
@@ -93,7 +95,7 @@ function loadFavorites() {
           addToCart(selectedProduct);
 
           const allMatchingButtons = document.querySelectorAll(
-            `.btn-add-cart[data-id="${productId}"]`
+            `.btn-add-cart[data-id="${productId}"]`,
           );
           allMatchingButtons.forEach((btn) => {
             btn.classList.add("active");
