@@ -1,17 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Muad | Online Store</title>
-    <link rel="icon" href="img/icon.png" />
+    <title>Favorites | Muad Store</title>
+    <link rel="icon" href="../img/icon.png" />
     <!-- Font Awesome Library -->
-    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="../css/all.min.css" />
     <!-- File CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
-    <!-- Cart -->
     <div class="cart">
       <div class="top-cart">
         <h3>Cart Items : <span class="count-item-cart">0</span></h3>
@@ -30,30 +29,32 @@
 
         <div class="button-cart">
           <a href="checkout.html" class="btn-cart btn">Checkout</a>
-          <span onclick="open_close_cart()" class="btn-cart btn trans-bg">
-            Shop More</span
+          <span onclick="open_close_cart()" class="btn-cart btn trans-bg"
+            >Shop More</span
           >
         </div>
       </div>
     </div>
-    <!-- End Cart -->
 
-    <!-- Header -->
     <header>
       <div class="top-header">
         <div class="container">
-          <a href="#" class="logo"><img src="img/logo.png" alt="" /></a>
+          <a href="../index.html" class="logo"
+            ><img src="../img/logo.png" alt=""
+          /></a>
 
-          <form action="" class="search-box">
+          <form action="search.html" class="search-box">
             <div class="select-box">
               <select id="category" name="category">
                 <option value="All categories">All categories</option>
-                <option value="Electronics & Digita">
-                  Electronics & Digita
+                <option value="Electronics & Digital">
+                  Electronics & Digital
                 </option>
                 <option value="Phones & Tablet">Phones & Tablet</option>
                 <option value="Fashion & Clothing">Fashion & Clothing</option>
-                <option value="Telivsion & Monitor">Telivsion & Monitor</option>
+                <option value="Television & Monitor">
+                  Television & Monitor
+                </option>
                 <option value="Jewelry & Watches">Jewelry & Watches</option>
                 <option value="Washing Machine">Washing Machine</option>
                 <option value="Toys & Hobbies">Toys & Hobbies</option>
@@ -114,9 +115,9 @@
                 ><i class="fa-regular fa-circle-xmark"></i
               ></span>
 
-              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="../index.html">Home</a></li>
               <li><a href="#">About</a></li>
-              <li><a href="#">Accessories </a></li>
+              <li><a href="#">Accessories</a></li>
               <li><a href="#">Blog</a></li>
               <li><a href="#">Contact</a></li>
             </ul>
@@ -134,65 +135,31 @@
         </div>
       </div>
     </header>
-    <!-- End Header -->
-    <!-- ############################################################################################ -->
-    <!-- Page Content -->
-    <div class="details">
+
+    <section class="favorites-page">
       <div class="container">
-        <div class="image-div">
-          <img src="img/product/22.png" alt="img" id="img" />
+        <div class="page-header">
+          <h1><i class="fa-solid fa-heart"></i> My Favorites</h1>
+          <p>Your favorite products</p>
         </div>
-        <div class="info">
-          <!-- product name -->
-          <h1 id="product-name"></h1>
-          <!-- product rating -->
-          <div class="stars" id="product-rating">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          </div>
-          <!-- price -->
-          <p id="price">$15</p>
-          <!-- availability -->
-          <h5>Availability : <span> In Stock</span></h5>
 
-          <!-- brand -->
-          <h5>Brand : <span id="brand"></span></h5>
+        <div class="favorites-grid" id="favorites-container">
+          <!-- Favorites will be loaded here -->
+        </div>
 
-          <!-- description -->
-          <p class="desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-            neque magnam nemo alias accusamus quas ut incidunt animi eos
-            voluptate?
-          </p>
-          <!-- quantity -->
-          <span
-            >Hurry Up! Only <span id="quantity"></span> products left in
-            stock</span
-          >
-          <!-- icons -->
-          <div class="icons">
-            <span class="btn-add-cart" data-id="product.id">
-              <i class="fa-solid fa-cart-shopping"></i>
-              add to cart
-            </span>
-            <span class="icon-product"
-              ><i class="fa-regular fa-heart"></i
-            ></span>
-          </div>
+        <div class="empty-favorites" id="empty-favorites" style="display: none">
+          <i class="fa-regular fa-heart"></i>
+          <h2>No favorites yet</h2>
+          <p>Start adding products to your favorites!</p>
+          <a href="../index.html" class="btn">Browse Products</a>
         </div>
       </div>
-    </div>
-    <!-- End Page Content -->
-    <!-- ############################################################################################ -->
+    </section>
 
-    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="big-row">
-          <img class="logo-footer" src="img/white_logo.png" alt="" />
+          <img class="logo-footer" src="../img/white_logo.png" alt="" />
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
             vero?
@@ -271,15 +238,13 @@
           <p>&copy; <span>Reda Store.</span> All Rights Reserved.</p>
 
           <div class="payment-img">
-            <img src="img/payment_method.png" alt="" />
+            <img src="../img/payment_method.png" alt="" />
           </div>
         </div>
       </div>
     </footer>
-    <!-- End Foote`r -->
 
-    <!-- JS related file -->
-    <script src="JS/productDetails.js"></script>
-    <script src="JS/main.js"></script>
+    <script src="../JS/main.js"></script>
+    <script src="../JS/favorites.js"></script>
   </body>
 </html>

@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Muad | Online Store</title>
-    <link rel="icon" href="img/icon.png" />
+    <link rel="icon" href="../img/icon.png" />
     <!-- Font Awesome Library -->
-    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="../css/all.min.css" />
     <!-- File CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
+    <!-- Cart -->
     <div class="cart">
       <div class="top-cart">
         <h3>Cart Items : <span class="count-item-cart">0</span></h3>
@@ -29,19 +30,21 @@
 
         <div class="button-cart">
           <a href="checkout.html" class="btn-cart btn">Checkout</a>
-          <span onclick="open_close_cart()" class="btn-cart btn trans-bg"
-            >Shop More</span
+          <span onclick="open_close_cart()" class="btn-cart btn trans-bg">
+            Shop More</span
           >
         </div>
       </div>
     </div>
+    <!-- End Cart -->
 
+    <!-- Header -->
     <header>
       <div class="top-header">
         <div class="container">
-          <a href="#" class="logo"><img src="img/logo.png" alt="" /></a>
+          <a href="#" class="logo"><img src="../img/logo.png" alt="" /></a>
 
-          <form action="" class="search-box">
+          <form action="search.html" class="search-box">
             <div class="select-box">
               <select id="category" name="category">
                 <option value="All categories">All categories</option>
@@ -97,10 +100,10 @@
 
               <div class="category-nav-list">
                 <a href="#">Top 10 Offers</a>
-                <a href="#">Electronics & Digita</a>
+                <a href="#">Electronics & Digital</a>
                 <a href="#">Phones & Tablet</a>
                 <a href="#">Fashion & Clothing</a>
-                <a href="#">Telivsion & Monitor</a>
+                <a href="#">Television & Monitor</a>
                 <a href="#">Jewelry & Watches</a>
                 <a href="#">Toys & Hobbies</a>
               </div>
@@ -111,10 +114,10 @@
                 ><i class="fa-regular fa-circle-xmark"></i
               ></span>
 
-              <li class="active"><a href="index.html">Home</a></li>
+              <li class="active"><a href="../index.html">Home</a></li>
               <li><a href="#">About</a></li>
-              <li><a href="#">Accesories</a></li>
-              <li><a href="#">Bolg</a></li>
+              <li><a href="#">Accessories </a></li>
+              <li><a href="#">Blog</a></li>
               <li><a href="#">Contact</a></li>
             </ul>
           </nav>
@@ -131,93 +134,61 @@
         </div>
       </div>
     </header>
-
-    <section class="checkout">
-      <form id="form-contact" method="post" action="">
-        <div class="container">
-          <div class="ordersummary">
-            <h1>Order Summary</h1>
-
-            <div class="items" id="checkout-items"></div>
-
-            <div class="bottom-summary">
-              <div class="shop-table">
-                <p>Subtotal :</p>
-                <span class="subtotal-checkout">$0</span>
-              </div>
-
-              <div class="shop-table">
-                <p>Shipping :</p>
-                <span class="">$ 20.00</span>
-              </div>
-
-              <div class="shop-table">
-                <p>total :</p>
-                <span class="total-checkout">$20</span>
-              </div>
-
-              <div class="button-div">
-                <button type="submit">Place order</button>
-              </div>
-            </div>
+    <!-- End Header -->
+    <!-- ############################################################################################ -->
+    <!-- Page Content -->
+    <div class="details">
+      <div class="container">
+        <div class="image-div">
+          <img src="../img/product/22.png" alt="img" id="img" />
+        </div>
+        <div class="info">
+          <!-- product name -->
+          <h1 id="product-name"></h1>
+          <!-- product rating -->
+          <div class="stars" id="product-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
           </div>
+          <!-- price -->
+          <p id="price">$15</p>
+          <!-- availability -->
+          <h5>Availability : <span> In Stock</span></h5>
 
-          <div class="input-info">
-            <div class="address">
-              <h2>Delivery Address</h2>
+          <!-- brand -->
+          <h5>Brand : <span id="brand"></span></h5>
 
-              <div class="inputs">
-                <label for="">Email</label>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  name="Email"
-                  required
-                />
-
-                <label for="">Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  name="Name"
-                  required
-                />
-
-                <label for="">Address</label>
-                <input
-                  type="text"
-                  placeholder="Enter your address"
-                  name="Address"
-                  required
-                />
-
-                <label for="">Phone</label>
-                <input
-                  type="number"
-                  placeholder="Enter your phone"
-                  name="Phone"
-                  required
-                />
-              </div>
-            </div>
-
-            <div class="coupon">
-              <h2>Coupon Code</h2>
-
-              <div class="inputs">
-                <label for="">Coupon code</label>
-                <input type="text" placeholder="Enter your coupon code" />
-              </div>
-
-              <div class="btn-coupon">
-                <button>Apply Coupon</button>
-              </div>
-            </div>
+          <!-- description -->
+          <p class="desc">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
+            neque magnam nemo alias accusamus quas ut incidunt animi eos
+            voluptate?
+          </p>
+          <!-- quantity -->
+          <span
+            >Hurry Up! Only <span id="quantity"></span> products left in
+            stock</span
+          >
+          <!-- icons -->
+          <div class="icons">
+            <span class="btn-add-cart" data-id="product.id">
+              <i class="fa-solid fa-cart-shopping"></i>
+              add to cart
+            </span>
+            <span class="icon-product"
+              ><i class="fa-regular fa-heart"></i
+            ></span>
           </div>
         </div>
-      </form>
-    </section>
+      </div>
+    </div>
+    <!-- End Page Content -->
+    <!-- ############################################################################################ -->
 
+    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="big-row">
@@ -271,13 +242,13 @@
               Time</a
             >
             <a href="#"
-              ><i class="fa-solid fa-caret-right"></i> Purchase Hisotry</a
+              ><i class="fa-solid fa-caret-right"></i> Purchase History</a
             >
           </div>
         </div>
 
         <div class="row">
-          <h4>Service us</h4>
+          <h4>Our Services</h4>
 
           <div class="links">
             <a href="#"
@@ -290,7 +261,7 @@
               ><i class="fa-solid fa-caret-right"></i> Privacy Policy</a
             >
             <a href="#"><i class="fa-solid fa-caret-right"></i> Help</a>
-            <a href="#"><i class="fa-solid fa-caret-right"></i> FAQS</a>
+            <a href="#"><i class="fa-solid fa-caret-right"></i> FAQs</a>
           </div>
         </div>
       </div>
@@ -305,8 +276,10 @@
         </div>
       </div>
     </footer>
+    <!-- End Foote`r -->
 
-    <script src="JS/main.js"></script>
-    <script src="JS/submit_checkout.js"></script>
+    <!-- JS related file -->
+    <script src="../JS/main.js"></script>
+    <script src="../JS/productDetails.js"></script>
   </body>
 </html>

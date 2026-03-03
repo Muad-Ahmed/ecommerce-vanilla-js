@@ -7,6 +7,20 @@ function Open_Categ_list() {
   categoryNavList.classList.toggle("active");
 }
 
+// Resolve image path depending on current page location.
+// If the current page is inside /html/ we need to prefix with "../",
+// otherwise use the normalized path without leading "./".
+function resolveImg(src) {
+  if (!src) return src;
+  const normalized = src.replace(/^\.\//, "");
+  return window.location.pathname.startsWith("/html/")
+    ? `../${normalized}`
+    : normalized;
+}
+
+// expose helper globally so other modules/templates can use it
+window.resolveImg = resolveImg;
+
 // 2. Handle all clicks on the document
 document.addEventListener("click", (event) => {
   // Check if the menu is currently open
@@ -67,7 +81,7 @@ function updateCart() {
 
     cartItemsContainer.innerHTML += `
       <div class="item-cart">
-        <img src="${item.img}" alt="">
+        <img src="${resolveImg(item.img)}" alt="">
         <div class="content">
           <h4>${item.name}</h4>
           <p class="price-cart">$${itemTotal}</p>
@@ -87,7 +101,7 @@ function updateCart() {
       checkoutItems.innerHTML += `
         <div class="item-cart">
           <div class="image-name">
-            <img src="${item.img}" alt="">
+            <img src="${resolveImg(item.img)}" alt="">
             <div class="content">
               <h4>${item.name}</h4>
               <p class="price-cart">$${itemTotal}</p>
@@ -184,7 +198,9 @@ function updateFavoriteCount() {
 // Toggle favorite function (global)
 function toggleFavorite(product, button) {
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  const existingIndex = favorites.findIndex((item) => item.id === product.id);
+  const existingIndex = favorites.findIndex(
+    (item) => Number(item.id) === Number(product.id),
+  );
 
   if (existingIndex > -1) {
     // Remove from favorites

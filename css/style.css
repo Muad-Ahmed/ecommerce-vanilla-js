@@ -23,7 +23,7 @@
   word-spacing: -1px;
 }
 :root {
-  --main-color: #ff8716;
+  --main-color: #ff790b;
   --p-color: #7b7b7b;
   --bg-color: #f3f3f3;
   --white-color: #fff;
@@ -1477,3 +1477,100 @@ footer .bottom-footer .payment-img {
   height: 100%;
   object-fit: cover;
 }
+
+/* Start Success Page */
+.success-page-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.success-card {
+  background: var(--white-color);
+  padding: 50px 30px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  max-width: 450px;
+  width: 95%;
+  text-align: center;
+  animation: successFadeIn 0.6s ease-out;
+}
+
+.success-icon-container {
+  width: 80px;
+  height: 80px;
+  background: #fff4ec;
+  color: var(--main-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin: 0 auto 20px;
+}
+
+.success-title {
+  font-size: 1.8rem;
+  color: var(--color-heading);
+  margin-bottom: 15px;
+}
+
+.success-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  color: var(--p-color);
+}
+
+.success-status-box {
+  display: block;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  background-color: #f9f9f9;
+}
+
+.success-status-box.success {
+  color: var(--success-color, #28a745);
+  border-left: 5px solid var(--success-color, #28a745);
+}
+
+.success-status-box.failed {
+  color: var(--error-color, #e51a1a);
+  border-left: 5px solid var(--error-color, #e51a1a);
+}
+
+.success-home-btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: var(--main-color);
+  color: var(--white-color);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition:
+    transform 0.2s,
+    background 0.3s;
+}
+
+.success-home-btn:hover {
+  filter: brightness(0.9);
+  transform: translateY(-2px);
+}
+
+@keyframes successFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* End Success Page */

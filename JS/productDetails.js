@@ -7,15 +7,22 @@ const price = document.getElementById("price");
 const productBrand = document.getElementById("brand");
 const quantity = document.getElementById("quantity");
 
-fetch("public/products.json")
+fetch(
+  window.location.pathname.startsWith("/html/")
+    ? "../public/products.json"
+    : "public/products.json",
+)
   .then((response) => response.json())
   .then((data) => {
     const selectedProduct = data.find(
-      (product) => product.id === Number(productId)
+      (product) => product.id === Number(productId),
     );
 
     if (selectedProduct) {
-      img.src = selectedProduct.img;
+      img.src =
+        typeof resolveImg === "function"
+          ? resolveImg(selectedProduct.img)
+          : selectedProduct.img;
       productName.textContent = selectedProduct.name;
       price.textContent = `$${selectedProduct.price}`;
       productBrand.textContent = selectedProduct.brand;
@@ -36,7 +43,7 @@ fetch("public/products.json")
       // Check if product is in favorites
       const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
       const isInFavorites = favorites.some(
-        (item) => item.id === selectedProduct.id
+        (item) => item.id === selectedProduct.id,
       );
       const favoriteBtn = document.querySelector(".icon-product");
       if (isInFavorites) {
@@ -57,7 +64,7 @@ fetch("public/products.json")
 
         // Update button appearance
         const isInFavorites = JSON.parse(
-          localStorage.getItem("favorites") || "[]"
+          localStorage.getItem("favorites") || "[]",
         ).some((item) => item.id === selectedProduct.id);
 
         if (isInFavorites) {

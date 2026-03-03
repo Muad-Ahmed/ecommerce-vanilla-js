@@ -12,7 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
       : `Category: ${categoryQuery}`;
   }
 
-  fetch("public/products.json")
+  fetch(
+    window.location.pathname.startsWith("/html/")
+      ? "../public/products.json"
+      : "public/products.json",
+  )
     .then((response) => response.json())
     .then((data) => {
       const resultsContainer = document.getElementById(
@@ -61,12 +65,12 @@ function renderResults(items, container) {
       return `
             <div class="product">
                 <div class="img-product">
-                    <a href="productDetails.html?id=${product.id}">
-                        <img src="${product.img}" alt="">
+                    <a href="html/productDetails.html?id=${product.id}">
+                      <img src="${resolveImg(product.img)}" alt="">
                     </a>
                 </div>
                 <p class="name-product">
-                    <a href="productDetails.html?id=${product.id}">${product.name}</a>
+                    <a href="html/productDetails.html?id=${product.id}">${product.name}</a>
                 </p>
                 <div class="price">
                     <p><span>$${product.price}</span></p>

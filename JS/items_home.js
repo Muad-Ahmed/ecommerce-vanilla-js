@@ -1,4 +1,8 @@
-fetch("public/products.json")
+fetch(
+  window.location.pathname.startsWith("/html/")
+    ? "../public/products.json"
+    : "public/products.json",
+)
   .then((response) => response.json())
   .then((data) => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -32,9 +36,7 @@ fetch("public/products.json")
           <div class="swiper-slide product">
             <span class="sale-present">%${percentDisc}</span>
             <div class="img-product">
-               <a href="productDetails.html?id=${product.id}"><img src="${
-                 product.img
-               }" alt=""></a>
+               <a href="html/productDetails.html?id=${product.id}"><img src="${resolveImg(product.img)}" alt=""></a>
             </div>
             <div class="stars">
               <i class="fa-solid fa-star"></i>
@@ -43,7 +45,7 @@ fetch("public/products.json")
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
             </div>
-            <p class="name-product"> <a href="productDetails.html?id=${
+            <p class="name-product"> <a href="html/productDetails.html?id=${
               product.id
             }">${product.name}</a></p>
             <div class="price">
@@ -65,7 +67,7 @@ fetch("public/products.json")
                 } fa-heart"></i>
               </span>
             </div>
-            <a href="productDetails.html?id=${
+            <a href="html/productDetails.html?id=${
               product.id
             }" class="card-link"></a>
           </div>
@@ -96,9 +98,7 @@ fetch("public/products.json")
            <div class="swiper-slide product" id="product-card">
              ${percentDiscDiv}
              <div class="img-product">
-               <a href="productDetails.html?id=${product.id}"><img src="${
-                 product.img
-               }" alt=""></a>
+               <a href="html/productDetails.html?id=${product.id}"><img src="${resolveImg(product.img)}" alt=""></a>
              </div>
              <div class="stars">
                <i class="fa-solid fa-star"></i>
@@ -107,7 +107,7 @@ fetch("public/products.json")
                <i class="fa-solid fa-star"></i>
                <i class="fa-solid fa-star"></i>
              </div>
-             <p class="name-product"><a href="productDetails.html?id=${
+             <p class="name-product"><a href="html/productDetails.html?id=${
                product.id
              }">${product.name}</a></p>
              <div class="price">
@@ -129,7 +129,7 @@ fetch("public/products.json")
                  } fa-heart"></i>
                </span>
              </div>
-             <a href="productDetails.html?id=${
+             <a href="html/productDetails.html?id=${
                product.id
              }" class="card-link"></a>
            </div>
