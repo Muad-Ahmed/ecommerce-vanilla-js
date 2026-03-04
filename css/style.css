@@ -1194,6 +1194,15 @@ footer .bottom-footer .payment-img {
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
+.checkout .input-info .coupon .btn-coupon button:disabled {
+  background: #c57635;
+  border: 2px solid #c57635;
+}
+.checkout .input-info .coupon .btn-coupon button:disabled:hover {
+  background: #c57635;
+  border: 2px solid #c57635;
+  color: white;
+}
 .checkout .input-info .coupon .btn-coupon button:hover {
   background: transparent;
   color: var(--main-color);
