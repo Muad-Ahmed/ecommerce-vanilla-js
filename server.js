@@ -7,14 +7,12 @@ const path = require("path");
 
 const app = express();
 
-
 app.use((req, res, next) => {
   if (req.url.startsWith("/api/")) {
     req.url = req.url.slice(4); // remove "/api"
   }
   next();
 });
-
 
 if (!process.env.VERCEL) {
   app.use(express.static(path.join(__dirname, "public")));
@@ -95,76 +93,81 @@ function saveOrder(order) {
   fs.writeFileSync(ordersFile, JSON.stringify(orders, null, 2));
 }
 
-// Checkout Session Route 
-app.post("/create-checkout-session", async (req, res) => {
-  try {
-    const cartItems = req.body.cartItems || req.body.items || [];
-    if (!Array.isArray(cartItems) || cartItems.length === 0)
-      throw new Error("cartItems must be a non-empty array");
-
-    const lineItems = cartItems.map((item, idx) => {
-      const rawId = item?.productId ?? item?.id ?? item?.productID;
-      const productIdNum = Number(rawId);
-      const product = PRODUCTS.find((p) => Number(p.id) === productIdNum);
-      if (!product) throw new Error("Product with ID " + rawId + " not found");
-
-      // Build absolute image URL for Stripe
-      let imagePath = product.img || "";
-
-      if (imagePath.startsWith(".")) imagePath = imagePath.replace(/^\./, "");
-      // build the origin dynamically; 
-      const origin = process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : req.protocol + "://" + req.get("host");
-      const absoluteImageUrl = origin + imagePath;
-
-      const fallbackImageUrl =
-        "https://placehold.co/300x300?text=Product+Image";
-
-      return {
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: product.name,
-            images: [absoluteImageUrl || fallbackImageUrl],
-          },
-          unit_amount: product.price * 100,
-        },
-        quantity: Number(item.quantity) || 1,
-      };
-    });
-
-    const deploymentOrigin = process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000";
-
-    const session = await stripe.checkout.sessions.create({
-      mode: "payment",
-      line_items: lineItems,
-      success_url: `${deploymentOrigin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${deploymentOrigin}/cancel.html`,
-    });
-
-    // Save order immediately (Demo mode without Webhook)
-    const newOrder = {
-      id: `order_${Date.now()}`,
-      sessionId: session.id,
-      amount: lineItems.reduce(
-        (sum, li) => sum + (li.unit_amount / 100) * li.quantity,
-        0,
-      ),
-      currency: "usd",
-      status: "pending",
-      createdAt: new Date().toISOString(),
-    };
-    saveOrder(newOrder);
-
-    res.json({ url: session.url });
-  } catch (err) {
-    console.error("Checkout error:", err.message);
-    res.status(500).json({ error: err.message });
-  }
-});
+// Checkout Session Route
+// The code used to live here for the Express server. When deploying to Vercel
+// we now handle /api/create-checkout-session with its own serverless
+// function in `api/create-checkout-session.js`.  Keeping this route is harmless
+// for local development but it is no longer relied on by the platform.
+//
+// app.post("/create-checkout-session", async (req, res) => {
+//   try {
+//     const cartItems = req.body.cartItems || req.body.items || [];
+//     if (!Array.isArray(cartItems) || cartItems.length === 0)
+//       throw new Error("cartItems must be a non-empty array");
+//
+//     const lineItems = cartItems.map((item, idx) => {
+//       const rawId = item?.productId ?? item?.id ?? item?.productID;
+//       const productIdNum = Number(rawId);
+//       const product = PRODUCTS.find((p) => Number(p.id) === productIdNum);
+//       if (!product) throw new Error("Product with ID " + rawId + " not found");
+//
+//       // Build absolute image URL for Stripe
+//       let imagePath = product.img || "";
+//
+//       if (imagePath.startsWith(".")) imagePath = imagePath.replace(/^\./, "");
+//       // build the origin dynamically;
+//       const origin = process.env.VERCEL_URL
+//         ? `https://${process.env.VERCEL_URL}`
+//         : req.protocol + "://" + req.get("host");
+//       const absoluteImageUrl = origin + imagePath;
+//
+//       const fallbackImageUrl =
+//         "https://placehold.co/300x300?text=Product+Image";
+//
+//       return {
+//         price_data: {
+//           currency: "usd",
+//           product_data: {
+//             name: product.name,
+//             images: [absoluteImageUrl || fallbackImageUrl],
+//           },
+//           unit_amount: product.price * 100,
+//         },
+//         quantity: Number(item.quantity) || 1,
+//       };
+//     });
+//
+//     const deploymentOrigin = process.env.VERCEL_URL
+//       ? `https://${process.env.VERCEL_URL}`
+//       : "http://localhost:3000";
+//
+//     const session = await stripe.checkout.sessions.create({
+//       mode: "payment",
+//       line_items: lineItems,
+//       success_url: `${deploymentOrigin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+//       cancel_url: `${deploymentOrigin}/cancel.html`,
+//     });
+//
+//     // Save order immediately (Demo mode without Webhook)
+//     const newOrder = {
+//       id: `order_${Date.now()}`,
+//       sessionId: session.id,
+//       amount: lineItems.reduce(
+//         (sum, li) => sum + (li.unit_amount / 100) * li.quantity,
+//         0,
+//       ),
+//       currency: "usd",
+//       status: "pending",
+//       createdAt: new Date().toISOString(),
+//     };
+//     saveOrder(newOrder);
+//
+//     res.json({ url: session.url });
+//   } catch (err) {
+//     console.error("Checkout error:", err.message);
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 // Order Status Route
 app.get("/order-status", async (req, res) => {
