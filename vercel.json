@@ -1,19 +1,16 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "*.html", "use": "@vercel/static" },
-    { "src": "html/**/*.html", "use": "@vercel/static" },
-    { "src": "public/**/*", "use": "@vercel/static" },
-    { "src": "css/**/*", "use": "@vercel/static" },
-    { "src": "JS/**/*", "use": "@vercel/static" },
-    { "src": "img/**/*", "use": "@vercel/static" },
-    { "src": "swiper/**/*", "use": "@vercel/static" },
-    { "src": "webfonts/**/*", "use": "@vercel/static" },
-    { "src": "fonts/**/*", "use": "@vercel/static" },
-    { "src": "api/**/*.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/products.json", "dest": "/public/products.json" },
-    { "src": "/(.*)", "dest": "/$1" }
+  "rewrites": [
+    {
+      "source": "/products.json",
+      "destination": "/public/products.json"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/$1"
+    }
   ]
 }

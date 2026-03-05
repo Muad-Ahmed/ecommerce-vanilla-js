@@ -1,19 +1,38 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const getRawBody = require("raw-body");
-const fs = require("fs");
-const path = require("path");
+
+// IMPORTANT: Vercel must NOT parse the body before we receive it,
+// because Stripe signature verification requires the raw bytes.
+// This config disables Vercel's automatic body parsing for this route only.
+module.exports.config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+/** Collect the raw request body as a Buffer. */
+function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on("data", (chunk) => chunks.push(chunk));
+    req.on("end", () => resolve(Buffer.concat(chunks)));
+    req.on("error", reject);
+  });
+}
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-    return res.status(405).end("Method Not Allowed");
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
+
+  if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
+    console.error("Missing STRIPE_SECRET_KEY or STRIPE_WEBHOOK_SECRET env vars");
+    return res.status(500).json({ error: "Webhook not configured" });
   }
 
   const sig = req.headers["stripe-signature"];
-  if (!sig || !process.env.STRIPE_WEBHOOK_SECRET) {
-    return res
-      .status(400)
-      .json({ error: "Missing Stripe signature or webhook secret" });
+  if (!sig) {
+    return res.status(400).json({ error: "Missing stripe-signature header" });
   }
 
   let buf;
@@ -21,7 +40,7 @@ module.exports = async (req, res) => {
     buf = await getRawBody(req);
   } catch (err) {
     console.error("Error reading raw body:", err);
-    return res.status(400).send(`Error reading body: ${err.message}`);
+    return res.status(400).json({ error: `Error reading body: ${err.message}` });
   }
 
   let event;
@@ -29,60 +48,26 @@ module.exports = async (req, res) => {
     event = stripe.webhooks.constructEvent(
       buf,
       sig,
-      process.env.STRIPE_WEBHOOK_SECRET,
+      process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (err) {
     console.error("Webhook signature verification failed:", err.message);
-    return res.status(400).send(`Webhook Error: ${err.message}`);
+    return res.status(400).json({ error: `Webhook Error: ${err.message}` });
   }
 
-  // Path to orders file (project root)
-  const ordersFile = path.join(process.cwd(), "data", "orders.json");
-  if (!fs.existsSync(path.dirname(ordersFile))) {
-    try {
-      fs.mkdirSync(path.dirname(ordersFile), { recursive: true });
-    } catch (e) {}
-  }
-
-  if (event.type === "checkout.session.completed") {
-    const session = event.data.object;
-    console.log("✅ Webhook: checkout.session.completed for", session.id);
-
-    let orders = [];
-    try {
-      orders = JSON.parse(fs.readFileSync(ordersFile, "utf8"));
-    } catch (err) {
-      orders = [];
+  // Handle events
+  switch (event.type) {
+    case "checkout.session.completed": {
+      const session = event.data.object;
+      console.log("✅ Webhook: checkout.session.completed for", session.id);
+      // NOTE: Vercel serverless functions have an ephemeral/read-only filesystem.
+      // Persist order data in a real database (e.g. Vercel KV, Supabase, PlanetScale).
+      // For now we just log — the success page reads the session status directly from Stripe.
+      break;
     }
-
-    const order = orders.find((o) => o.sessionId === session.id);
-    if (order) {
-      order.status = "paid";
-      try {
-        fs.writeFileSync(ordersFile, JSON.stringify(orders, null, 2));
-        console.log("Order marked as paid:", order.id || order.sessionId);
-      } catch (err) {
-        console.error("Failed to write orders file:", err);
-      }
-    } else {
-      // If order doesn't exist locally, add a minimal record (demo only)
-      const newOrder = {
-        id: `order_${Date.now()}`,
-        sessionId: session.id,
-        amount: session.amount_total ? session.amount_total / 100 : null,
-        currency: session.currency || "usd",
-        status: "paid",
-        createdAt: new Date().toISOString(),
-      };
-      orders.push(newOrder);
-      try {
-        fs.writeFileSync(ordersFile, JSON.stringify(orders, null, 2));
-        console.log("New order saved from webhook:", newOrder.id);
-      } catch (err) {
-        console.error("Failed to write new order to file:", err);
-      }
-    }
+    default:
+      console.log(`Unhandled event type: ${event.type}`);
   }
 
-  res.json({ received: true });
+  return res.status(200).json({ received: true });
 };

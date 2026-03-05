@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Cancelled | My Store</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f5f5f5;
+      font-family: inherit;
+    }
+    .cancel-box {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+      padding: 56px 48px;
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+    }
+    .cancel-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #e53935;
+      margin: 0 0 12px;
+    }
+    p {
+      color: #555;
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    a.btn {
+      display: inline-block;
+      padding: 13px 32px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    a.btn:hover { opacity: 0.85; }
+    a.btn-primary {
+      background: #1a1a2e;
+      color: #fff;
+    }
+    a.btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="cancel-box">
+    <div class="cancel-icon">🛒</div>
+    <h1>Payment Cancelled</h1>
+    <p>No worries — your cart is still saved. You can go back and try again whenever you're ready.</p>
+    <div class="btn-group">
+      <a href="/html/checkout.html" class="btn btn-primary">Return to Checkout</a>
+      <a href="/index.html" class="btn btn-secondary">Continue Shopping</a>
+    </div>
+  </div>
+</body>
+</html>

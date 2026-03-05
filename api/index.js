@@ -1,11 +1,6 @@
-// This file runs on Vercel as a serverless function. It reuses the express
-// app defined in the root `server.js` file and wraps it with
-// `serverless-http` so that Vercel can invoke it.
-
-const serverless = require("serverless-http");
-const app = require("../server");
-
-// tell serverless-http that the function is mounted at /api, so it will
-// adjust the request path accordingly. this mirrors the local prefix-stripping
-// middleware in server.js and keeps both environments consistent.
-module.exports = serverless(app, { basePath: "/api" });
+// This file is intentionally left as a no-op.
+// Vercel uses file-based routing: each file in /api is its own serverless function.
+// The previous serverless-http wrapper is no longer needed and was causing conflicts.
+// Routes handled by individual files:
+//   POST /api/create-checkout-session  → api/create-checkout-session.js
+//   POST /api/webhook                  → api/webhook.js
