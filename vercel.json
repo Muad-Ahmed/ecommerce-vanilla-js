@@ -1,16 +1,31 @@
 {
+  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/products.json",
       "destination": "/public/products.json"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/checkout.html",
+      "destination": "/html/checkout.html",
+      "permanent": true
     },
     {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
+      "source": "/favorites.html",
+      "destination": "/html/favorites.html",
+      "permanent": true
     },
     {
-      "source": "/(.*)",
-      "destination": "/$1"
+      "source": "/productDetails.html",
+      "destination": "/html/productDetails.html",
+      "permanent": true
+    },
+    {
+      "source": "/search.html",
+      "destination": "/html/search.html",
+      "permanent": true
     }
   ]
 }
