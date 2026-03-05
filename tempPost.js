@@ -1,5 +1,5 @@
 const http = require("http");
-const data = JSON.stringify({ cartItems: [] });
+const data = JSON.stringify({ cartItems: [{ productId: 0, quantity: 1 }] });
 const req = http.request(
   {
     hostname: "localhost",
