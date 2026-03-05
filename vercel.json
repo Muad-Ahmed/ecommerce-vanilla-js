@@ -1,40 +1,75 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
+      "src": "index.html",
+      "use": "@vercel/static"
     },
     {
-      "source": "/products.json",
-      "destination": "/public/products.json"
+      "src": "html/**/*.html",
+      "use": "@vercel/static"
     },
     {
-      "source": "/",
-      "destination": "/index.html"
+      "src": "public/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "css/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "JS/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "img/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "swiper/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "webfonts/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "fonts/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "api/create-checkout-session.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/order-status.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/webhook.js",
+      "use": "@vercel/node"
     }
   ],
-  "redirects": [
+  "routes": [
     {
-      "source": "/checkout.html",
-      "destination": "/html/checkout.html",
-      "permanent": true
+      "src": "/products.json",
+      "dest": "/public/products.json"
     },
     {
-      "source": "/favorites.html",
-      "destination": "/html/favorites.html",
-      "permanent": true
+      "src": "/api/create-checkout-session",
+      "dest": "/api/create-checkout-session.js"
     },
     {
-      "source": "/productDetails.html",
-      "destination": "/html/productDetails.html",
-      "permanent": true
+      "src": "/api/order-status",
+      "dest": "/api/order-status.js"
     },
     {
-      "source": "/search.html",
-      "destination": "/html/search.html",
-      "permanent": true
+      "src": "/api/webhook",
+      "dest": "/api/webhook.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
