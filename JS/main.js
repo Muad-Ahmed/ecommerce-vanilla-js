@@ -3,7 +3,7 @@ let categoryNavList = document.querySelector(".category-nav-list");
 const categoryNav = document.querySelector(".category-nav");
 
 // 1. Toggle menu when clicking the button
-function Open_Categ_list() {
+function open_category_list() {
   categoryNavList.classList.toggle("active");
 }
 
@@ -189,7 +189,7 @@ function updateButtonsState(productId) {
 // Update favorite count in header
 function updateFavoriteCount() {
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  const favoriteCount = document.querySelector(".count-favourite");
+  const favoriteCount = document.querySelector(".count-favorite");
   if (favoriteCount) {
     favoriteCount.textContent = favorites.length;
   }

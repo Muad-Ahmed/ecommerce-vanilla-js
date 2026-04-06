@@ -139,7 +139,7 @@ function updateCounters() {
     .querySelectorAll(".count-item-header")
     .forEach((el) => (el.innerText = cart.length));
   document
-    .querySelectorAll(".count-favourite")
+    .querySelectorAll(".count-favorite")
     .forEach((el) => (el.innerText = favorites.length));
   document
     .querySelectorAll(".count-item-cart")
