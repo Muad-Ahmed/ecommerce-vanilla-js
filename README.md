@@ -5,19 +5,19 @@ A modern, responsive e-commerce web application built entirely with **Vanilla Ja
 ![Project Preview](img/logo.png)
 
 ## 🚀 Live Demo
-You can view the project in action here: [Live Link](https://muad-store.vercel.app/) (Update with your actual link)
+You can view the project in action here: [Live Link](https://ecommerce-react-js-mocha.vercel.app/) 
 
 ## ✨ Key Features
 
-- **🛒 Interactive Shopping Cart**: Add and remove items, adjust quantities, and see real-time subtotal updates.
-- **❤️ Favorites / Wishlist**: Save your favorite products for later viewing.
-- **🔍 Advanced Search**: Filter products by name and category across the entire store.
-- **📱 Fully Responsive Design**: Optimized for mobile, tablet, and desktop screens.
-- **🛍️ Category Browsing**: Navigate through specialized categories like Electronics, Mobiles, and Appliances.
-- **💎 Product Details**: In-depth view for each product including images, specifications, and availability.
-- **💳 Checkout System**: Complete order summary with shipping calculation and coupon code support.
-- **🔄 Dynamic Sliders**: Featured products and hot deals displayed using Swiper JS.
-- **💾 Persistence**: Cart and Favorites data are saved locally using `localStorage`.
+- ** Interactive Shopping Cart**: Add and remove items, adjust quantities, and see real-time subtotal updates.
+- ** Favorites / Wishlist**: Save your favorite products for later viewing.
+- ** Advanced Search**: Filter products by name and category across the entire store.
+- ** Fully Responsive Design**: Optimized for mobile, tablet, and desktop screens.
+- ** Category Browsing**: Navigate through specialized categories like Electronics, Mobiles, and Appliances.
+- ** Product Details**: In-depth view for each product including images, specifications, and availability.
+- ** Checkout System**: Complete order summary with shipping calculation and coupon code support.
+- ** Dynamic Sliders**: Featured products and hot deals displayed using Swiper JS.
+- ** Persistence**: Cart and Favorites data are saved locally using `localStorage`.
 
 ## 🛠️ Technologies Used
 
@@ -66,4 +66,4 @@ You can view the project in action here: [Live Link](https://muad-store.vercel.a
 
 ---
 
-Made with ❤️ by [Muad](https://github.com/Muad-Ahmed)
+Made by [Muad](https://github.com/Muad-Ahmed)
